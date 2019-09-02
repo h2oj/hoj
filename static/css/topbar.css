@@ -1,0 +1,30 @@
+.topbar {
+    height: 50px;
+    line-height: 50px;
+    background-color: #5a5b69;
+    color: #f0f0f0;
+    font-size: 150%;
+    font-weight: 400;
+    font-family: 'microsoft yahei';
+}
+
+.topbar-info {
+    line-height: 50px;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    transition-duration: 0.3s;
+}
+
+.topbar-info-clicked {
+    margin-right: 200px;
+}
+
+.topbar-title {
+    margin-left: 10px;
+}
+
+.menubar {
+
+}
+

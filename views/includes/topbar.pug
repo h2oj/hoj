@@ -1,0 +1,13 @@
+link(rel='stylesheet', href='/css/topbar.css')
+script(src='/js/menubar.js')
+
+div.topbar
+    i.topbar-info.fa.fa-bars(onclick='topbar_info_clicked(this)')
+    span.topbar-title(onclick='window.location = \'/\'') Scratch Online Judge
+
+div.menubar
+    ul
+        li 个人中心
+        li 题目列表
+        li 比赛列表
+        li 评测状态
