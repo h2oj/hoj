@@ -2,14 +2,7 @@
 
 // SCOJ - An online judge system which supports Scratch.
 // Copyright (c) 2019 Alex Cui.
-// This project is released with Apache-2.0.
-// For developer, you should write the following sentenses in "readme":
-//   - This project is created by Alex Cui, and modified by <name>.
-//   - This project requires Node.js.
-//   - This project is released with Apache-2.0 license.
-// Also, you should observe the following rules:
-//   - At the buttom of the website page, you should keep "Based on SCOJ" and
-//     a to SCOJ's github repository.
+// This project is released with AGPLv3.0
 
 'use strict';
 
