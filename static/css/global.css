@@ -4,3 +4,11 @@ body {
     margin: 0px;
     padding: 0px;
 }
+
+.container {
+    display: flex;
+}
+
+.container-center {
+    flex: 1;
+}

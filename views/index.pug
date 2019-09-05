@@ -7,4 +7,8 @@ html
         link(rel='stylesheet', href='/css/global.css')
         link(rel='stylesheet', href='/css/index.css')
     body
-        include includes/topbar.pug
+        div.container
+            include includes/leftbar.pug
+            div.container-center
+                include includes/topbar.pug
+                p Hello, world!
