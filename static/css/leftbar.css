@@ -22,6 +22,10 @@
     padding: 0px;
 }
 
+.leftbar > ul > li {
+    /* cursor: pointer; */
+}
+
 .leftbar-icon {
     font-size: 150%;
 }
@@ -35,8 +39,11 @@
     position: relative;
     top: 50px;
     width: 100%;
-    padding-right: 30px !important;
     font-size: 120%;
+}
+
+.leftbar-detail > li {
+    padding-right: 30px;
 }
 
 
