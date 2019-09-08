@@ -10,5 +10,9 @@ html
             include includes/leftbar.pug
             div.container-center
                 include includes/topbar.pug
-                p Hello, world!
+                p LOGIN
+                form(action='/api/login', method='post')
+                    input(type='text', name='username')
+                    input(type='text', name='password')
+                    input()
                 

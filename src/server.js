@@ -14,9 +14,6 @@ import { default as router_index } from './routes/index.js';
 import { default as router_login } from './routes/login.js';
 import { default as router_api } from './routes/api.js';
 
-sql.connect();
-logger.log(`Server: Connected to ${config.db_port}!`);
-
 const app = express();
 
 app.set('view engine', 'pug');
@@ -26,7 +23,17 @@ app.use('/', router_index);
 app.use('/login', router_login);
 app.use('/api', router_api);
 
+sql.connect(err => {
+    if (err) {
+        logger.err(`MySQL Error ${err.code}(${err.errno})`);
+        logger.errln(err.message);
+    }
+    else {
+        logger.log(`Server: Database connected to ${config.db_host}:${config.db_port} successfully.`);
+    }
+});
+
 app.listen(config.server_port, () => {
-    logger.log(`Server: App listening on port ${config.server_port}!`);
+    logger.log(`Server: App listening on port ${config.server_port}.`);
 });
 

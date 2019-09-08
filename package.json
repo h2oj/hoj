@@ -17,7 +17,7 @@
   },
   "main": "src/app.mjs",
   "scripts": {
-    "start": "node --experimental-modules src/app.mjs"
+    "start": "node --experimental-modules src/server.js"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.10.2",
