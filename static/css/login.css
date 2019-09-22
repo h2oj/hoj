@@ -1,0 +1,60 @@
+input[type='text'], input[type='password'] {
+    width: 350px;
+    margin: 3px 0px;
+    padding: 3px 5px;
+    border-color: #787878;
+    border-width: 1px;
+    border-radius: 3px;
+    line-height: 25px;
+    font-size: 15px;
+}
+
+input[type='submit'] {
+    width: 100%;
+    margin-top: 10px;
+    padding: 3px 5px;
+    border-width: 0px;
+    border-radius: 3px;
+    background-color: #0000ff;
+    color: #ffffff;
+    line-height: 25px;
+    font-size: 15px;
+}
+
+.login-frame {
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    background-color: #66ccff;
+    box-shadow: 0 0 5px #7f7f7f;
+}
+
+.login-tab {
+    display: flex;
+    padding: 3px;
+    background-color: #ffffff;
+}
+
+.login-tab > span {
+    flex: 1;
+    padding: 3px;
+    text-align: center;
+}
+
+.login-tab-select {
+    background-color: #0000ff;
+    color: #ffffff;
+}
+
+.login-signup > form > p, .login-login > form > p {
+    margin: 10px 0px 0px 0px;
+}
+
+.login-title {
+    color: #ffffff;
+    font-size: 300%;
+    font-weight: 100;
+    text-align: center;
+    margin: 35px;
+}
+
