@@ -12,6 +12,7 @@ import logger from './logger.js';
 import sql from './sql.js';
 import { default as router_index } from './routes/index.js';
 import { default as router_login } from './routes/login.js';
+import { default as router_user } from './routes/user.js';
 import { default as router_api } from './routes/api.js';
 
 const app = express();
@@ -21,6 +22,7 @@ app.use(express.static('static'), express.static('node_modules/@fortawesome'));
 
 app.use('/', router_index);
 app.use('/login', router_login);
+app.use('/user', router_user);
 app.use('/api', router_api);
 
 sql.connect(err => {

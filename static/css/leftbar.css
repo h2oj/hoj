@@ -1,12 +1,15 @@
 .leftbar {
+    z-index: 999;
     display: flex;
+    position: fixed;
     width: 50px;
-    height: 100vh;
+    height: 100%;
     line-height: 50px;
     white-space: nowrap;
     overflow: hidden;
     background-color: #33333d;
     color: #f0f0f0;
+    /* box-shadow: 0 0 5px 0px black; */
     text-align: center;
     /* box-shadow: 0 0 8px #000000; */
     transition-duration: 0.3s;
