@@ -1,0 +1,19 @@
+doctype html
+html
+    head
+        meta(charset='UTF-8')
+        title Scratch Online Judge
+        link(rel='shortcut icon', href='/img/logo.jpg', type='image/x-icon')
+        link(rel='stylesheet', href='/css/global.css')
+        link(rel='stylesheet', href='/css/user.css')
+    body
+        div.container
+            include includes/leftbar.pug
+            div.container-center
+                include includes/topbar.pug
+                div.container-main
+                    div.user-basicinfo
+                        img.user-avatar(src='https://github.com/alexcui03/alexcui03.github.io/raw/master/avatar.jpg')
+                        div.user-basicinfo-info
+                            p.user-basicinfo-nickname #{nickname}
+                include includes/footer.pug

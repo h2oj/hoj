@@ -1,7 +1,9 @@
+/* eslint-disable no-unused-vars */
 'use strict';
 
 import express from 'express';
 import config from '../config.js';
+import error from '../error.js';
 import sql from '../sql.js';
 import cryptojs from 'crypto-js';
 
@@ -18,18 +20,15 @@ router.post('/signup', (req, res) => {
     sql.query(`SELECT username FROM scoj.user_account where username='${req.body.username}'`, (err, result, field) => {
         if (err) throw err;
         if (result.length === 0) {
-            sql.query(
-                `INSERT INTO user_account (uid, username, password, reg_time)
-                    VALUE (${config.uid_next}, '${req.body.username}', MD5(CONCAT('${req.body.password}', '${config.md5_salt}')), NOW())`,
-                (err, result, field) => {
-                    if (err) throw err;
-                    ++config.uid_next;
-                }
-            );
-            res.send('signup success');
+            sql.query(`INSERT INTO user_account (uid, username, password, reg_time)
+                    VALUE (${config.uid_next}, '${req.body.username}', MD5(CONCAT('${req.body.password}', '${config.md5_salt}')), NOW())`);
+            sql.query(`INSERT INTO user_account ((uid, nickname, avatar, sex, tag)
+                VALUE (${config.uid_next}, '${req.body.username}', MD5(CONCAT('${req.body.password}', '${config.md5_salt}')), NOW())`);
+            ++config.uid_next;
+            res.redirect('/login');
         }
         else {
-            res.send('error');
+            res.json(error.signup_error);
         }
     });
 });
@@ -39,15 +38,12 @@ router.post('/login', (req, res) => {
         if (err) throw err;
         if (result.length === 1) {
             if (cryptojs.MD5(req.body.password + config.md5_salt).toString() === result[0].password) {
-                res.send('login success');
-            }
-            else {
-                res.send('password error');
+                req.session.username = req.body.username;
+                res.redirect('/');
+                return;
             }
         }
-        else {
-            res.send('error');
-        }
+        res.json(error.login_error);
     });
 });
 

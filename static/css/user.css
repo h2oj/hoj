@@ -1,0 +1,23 @@
+.user-basicinfo {
+    display: flex;
+    width: 90%;
+    padding: 20px;
+    background-color: #8d8d8d;
+    box-shadow: 0 0 5px #7f7f7f;
+}
+
+.user-avatar {
+    width: 128px;
+}
+
+.user-basicinfo-info {
+    display: flex;
+    margin-left: 20px;
+    flex-direction: column;
+}
+
+.user-basicinfo-nickname {
+    font-size: 150%;
+    font-weight: bold;
+}
+
