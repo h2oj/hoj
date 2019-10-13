@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 function select(ele) {
     let p = ele.parentElement;
     if (p.firstElementChild.className == 'login-tab-select') {

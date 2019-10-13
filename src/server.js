@@ -7,6 +7,7 @@
 'use strict';
 
 import express from 'express';
+import bodyparser from 'body-parser';
 import config from './config.js';
 import logger from './logger.js';
 import sql from './sql.js';
@@ -19,6 +20,9 @@ const app = express();
 
 app.set('view engine', 'pug');
 app.use(express.static('static'), express.static('node_modules/@fortawesome'));
+
+app.use(bodyparser.json());
+app.use(bodyparser.urlencoded({ extended: false }));
 
 app.use('/', router_index);
 app.use('/login', router_login);

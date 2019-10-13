@@ -1,8 +1,8 @@
 'use strict';
 
-import Router from 'express';
+import express from 'express';
 
-const router = new Router;
+const router = express.Router();
 
 router.get('/', (req, res) => {
     res.render('index.pug');

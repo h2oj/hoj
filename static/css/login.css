@@ -15,7 +15,7 @@ input[type='submit'] {
     padding: 3px 5px;
     border-width: 0px;
     border-radius: 3px;
-    background-color: #0000ff;
+    background-color: #505050;
     color: #ffffff;
     line-height: 25px;
     font-size: 15px;
@@ -25,7 +25,7 @@ input[type='submit'] {
     display: flex;
     flex-direction: column;
     padding: 15px;
-    background-color: #66ccff;
+    background-color: #8d8d8d;
     box-shadow: 0 0 5px #7f7f7f;
 }
 
@@ -42,11 +42,12 @@ input[type='submit'] {
 }
 
 .login-tab-select {
-    background-color: #0000ff;
+    background-color: #505050;
     color: #ffffff;
 }
 
 .login-signup > form > p, .login-login > form > p {
+    color: #ffffff;
     margin: 10px 0px 0px 0px;
 }
 
