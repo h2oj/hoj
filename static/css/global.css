@@ -23,15 +23,24 @@ body::-webkit-scrollbar-thumb:hover {
 }
 
 .container {
+    min-height: 100vh;
     display: flex;
 }
 
 .container-center {
+    display: flex;
+    flex-direction: column;
     margin-left: 50px;
     flex: 1;
+    transition-duration: 0.3s;
+}
+
+.container-center-filter {
+    filter: blur(3px) brightness(0.8);
 }
 
 .container-main {
+    margin-bottom: auto;
     display: flex;
     padding: 50px;
     justify-content: center;

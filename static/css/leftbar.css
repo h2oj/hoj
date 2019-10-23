@@ -7,11 +7,10 @@
     line-height: 50px;
     white-space: nowrap;
     overflow: hidden;
-    background-color: #33333d;
+    background-color: #6f8bb4;
     color: #f0f0f0;
-    /* box-shadow: 0 0 5px 0px black; */
+    box-shadow: 0 0 5px 0px black;
     text-align: center;
-    /* box-shadow: 0 0 8px #000000; */
     transition-duration: 0.3s;
 }
 
@@ -48,7 +47,5 @@
 .leftbar-detail > li {
     padding-right: 30px;
 }
-
-
 
 

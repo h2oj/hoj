@@ -16,7 +16,9 @@ import sql from './sql.js';
 import { default as router_index } from './routes/index.js';
 import { default as router_login } from './routes/login.js';
 import { default as router_user } from './routes/user.js';
+import { default as router_problem } from './routes/problem.js';
 import { default as router_api } from './routes/api.js';
+import { default as router_404 } from './routes/404.js';
 
 const app = express();
 
@@ -50,6 +52,12 @@ app.use('/', router_index);
 app.use('/login', router_login);
 app.use('/user', router_user);
 app.use('/api', router_api);
+app.use('/problem', router_problem);
+app.use('/404', router_404);
+
+app.use((req, res, next) => {
+    res.redirect('/404');
+})
 
 app.listen(config.server_port, () => {
     logger.log(`Server: App listening on port ${config.server_port}.`);

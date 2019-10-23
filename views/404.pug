@@ -5,11 +5,13 @@ html
         title Scratch Online Judge
         link(rel='shortcut icon', href='/img/logo.jpg', type='image/x-icon')
         link(rel='stylesheet', href='/css/global.css')
+        link(rel='stylesheet', href='/css/404.css')
     body
         div.container#container
             include includes/leftbar.pug
             div.container-center#container-center
                 include includes/topbar.pug
                 div.container-main#container-main
-                    p Hello, world!
+                    p.error-title 404 Not Found
                 include includes/footer.pug
+

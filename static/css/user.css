@@ -1,9 +1,24 @@
-.user-basicinfo {
+.user-main {
     display: flex;
+    flex-direction: column;
+}
+
+.user-basicinfo, .user-selfintroduce {
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
     width: 90%;
     padding: 20px;
-    background-color: #8d8d8d;
+    background-color: #c0e0e8c4;
     box-shadow: 0 0 5px #7f7f7f;
+}
+
+.user-basicinfo {
+    margin-bottom: 20px;
+}
+
+.user-selfintroduce {
+    margin-bottom: 0px;
 }
 
 .user-avatar {
@@ -11,13 +26,55 @@
 }
 
 .user-basicinfo-info {
-    display: flex;
-    margin-left: 20px;
-    flex-direction: column;
+    width: 100%;
+    margin: auto 0px auto 20px;
 }
 
 .user-basicinfo-nickname {
+    display: inline;
     font-size: 150%;
     font-weight: bold;
 }
+
+.user-basicinfo-description {
+    display: inline;
+    margin: 0px;
+    padding-left: 10px;
+}
+
+.user-basicinfo-tags {
+    margin: 0px;
+    padding: 0px;
+}
+
+.user-basicinfo-tags > li {
+    font-size: 90%;
+    background-color: #4873e0;
+    color: #ffffff;
+}
+
+.user-basicinfo-community {
+    display: flex;
+    width: 150px;
+    height: 50px;
+    margin-top: auto;
+}
+
+.user-basicinfo-community > div {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.user-basicinfo-community-title {
+    margin: 0px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.user-basicinfo-community-value {
+    margin: 0px;
+    text-align: center;
+}
+
 

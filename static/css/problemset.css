@@ -1,0 +1,43 @@
+.problemset-main {
+    flex-direction: column;
+}
+
+.problemset-search, .problemset-list {
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+    padding: 20px;
+    background-color: #c0e0e8c4;;
+    box-shadow: 0 0 5px #7f7f7f;
+}
+
+.problemset-search {
+    margin-bottom: 20px;
+}
+
+.problemset-list {
+    margin-bottom: 0px;
+}
+
+.problemset-table {
+    border-spacing: 0px;
+    width: 100%;
+}
+
+.problemset-table th, .problemset-table td {
+    font-size: 17px;
+}
+
+.problemset-table > thead > tr > th {
+    border-bottom: 2px solid #ffffff;
+}
+
+.problemset-table > tbody > tr > td {
+    border-bottom: 1px solid #ffffff;
+}
+
+.problemset-table > tbody > tr:last-of-type > td {
+    border-bottom: 2px solid #ffffff;
+}
+
