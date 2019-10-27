@@ -1,0 +1,11 @@
+.meter {
+    width: 100px;
+    height: 12px;
+    padding: 2px;
+    background-color: #ffffff; 
+}
+
+.meter > div {
+    background-color: #5696b6;
+    height: 100%;
+}

@@ -8,7 +8,8 @@
     margin-right: auto;
     width: 90%;
     padding: 20px;
-    background-color: #c0e0e8c4;;
+    background-color: rgba(192, 224, 232, 0.769);
+    /* background-color: #c0e0e8; */
     box-shadow: 0 0 5px #7f7f7f;
 }
 
@@ -25,8 +26,14 @@
     width: 100%;
 }
 
-.problemset-table th, .problemset-table td {
+.problemset-table th {
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.problemset-table td {
     font-size: 17px;
+    line-height: 30px;
 }
 
 .problemset-table > thead > tr > th {
@@ -40,4 +47,68 @@
 .problemset-table > tbody > tr:last-of-type > td {
     border-bottom: 2px solid #ffffff;
 }
+
+.problemset-table-status {
+    text-align: center;
+    width: 40px;
+}
+
+.problemset-table-pid {
+    text-align: left;
+    width: 70px;
+}
+
+.problemset-table-title {
+    text-align: left;
+}
+
+.problemset-table-title > a {
+    text-decoration: none;
+    color: #2f8bc9;
+}
+
+.problemset-table-title > a:hover {
+    color: #1b4f72;
+}
+
+.problemset-table-difficulty {
+    text-align: center;
+    width: 150px;
+}
+
+.problemset-table-tag {
+    text-align: right;
+}
+
+.problemset-table-difficulty > span {
+    padding: 3px;
+    border-radius: 3px;
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.problemset-table-tag > ul {
+    margin: 0px;
+    padding: 0px;
+}
+
+.problemset-table-tag > span {
+    padding: 3px;
+    border-radius: 3px;
+    background-color: #8137bc;
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.problemset-table-tag > span:not(:first-child) {
+    margin-left: 5px;
+}
+
+.problemset-table-pass {
+    text-align: center;
+    width: 100px;
+}
+
 

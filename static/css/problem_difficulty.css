@@ -1,0 +1,65 @@
+.problem-difficulty-0 {
+    background-color: #484848;
+}
+
+.problem-difficulty-1 {
+    background-color: #cd2719;
+}
+
+.problem-difficulty-2 {
+    background-color: #ec8310;
+}
+
+.problem-difficulty-3 {
+    background-color: #cddc32;
+}
+
+.problem-difficulty-4 {
+    background-color: #309210;
+}
+
+.problem-difficulty-5 {
+    background-color: #2394e2;
+}
+
+.problem-difficulty-6 {
+    background-color: #a23087;
+}
+
+.problem-difficulty-7 {
+    background-color: #212372;
+}
+
+.problem-difficulty-0::after {
+    content: '尚未评定';
+}
+
+.problem-difficulty-1::after {
+    content: '入门';
+}
+
+.problem-difficulty-2::after {
+    content: '普及-';
+}
+
+.problem-difficulty-3::after {
+    content: '普及/提高-';
+}
+
+.problem-difficulty-4::after {
+    content: '普及+/提高';
+}
+
+.problem-difficulty-5::after {
+    content: '提高+/省选-';
+}
+
+.problem-difficulty-6::after {
+    content: '省选/NOI-';
+}
+
+.problem-difficulty-7::after {
+    content: 'NOI/NOI+/CTSC';
+}
+
+
