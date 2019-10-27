@@ -38,7 +38,7 @@ router.post('/login', (req, res) => {
         if (err) throw err;
         if (result.length === 1) {
             if (cryptojs.MD5(req.body.password + config.md5_salt).toString() === result[0].password) {
-                sql.query(`UPDATE scoj.user_account SET last_login=DATETIME() WHERE uid='${result[0].uid}`);
+                sql.query(`UPDATE scoj.user_account SET last_login=NOW() WHERE uid=${result[0].uid}`);
                 req.session.username = req.body.username;
                 res.redirect('/');
                 return;

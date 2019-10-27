@@ -1,0 +1,17 @@
+doctype html
+html
+    head
+        meta(charset='UTF-8')
+        title Scratch Online Judge
+        link(rel='shortcut icon', href='/img/logo.jpg', type='image/x-icon')
+        link(rel='stylesheet', href='/css/global.css')
+        link(rel='stylesheet', href='/css/problem.css')
+        link(rel='stylesheet', href='/css/problem_difficulty.css')
+    body
+        div.container#container
+            include includes/leftbar.pug
+            div.container-center#container-center
+                include includes/topbar.pug
+                div.container-main.problem-main#container-main
+                    p #{problem.pid}
+                include includes/footer.pug
