@@ -1,11 +1,11 @@
 .topbar {
     height: 50px;
     line-height: 50px;
-    background-color: #7cc7db;
+    background-color: #293333;
     color: #f0f0f0;
-    box-shadow: 0 0 5px 0px black;
+    /* box-shadow: 0 0 5px 0px black; */
     font-size: 150%;
-    font-weight: 400;
+    font-weight: 100;
     font-family: 'microsoft yahei';
 }
 

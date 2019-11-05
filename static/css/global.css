@@ -33,6 +33,9 @@ body::-webkit-scrollbar-thumb:hover {
     margin-left: 50px;
     flex: 1;
     transition-duration: 0.3s;
+    background-image: url('/img/bg.png');
+    background-attachment: fixed;
+    background-size: cover;
 }
 
 .container-center-filter {

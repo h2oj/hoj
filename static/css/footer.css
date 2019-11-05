@@ -1,6 +1,7 @@
 .footer {
     padding: 20px 10px;
-    background-color: #484848;
+    background-color: #293333;
+    font-weight: 100;
 }
 
 .footer > p {

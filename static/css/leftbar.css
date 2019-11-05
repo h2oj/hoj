@@ -7,9 +7,9 @@
     line-height: 50px;
     white-space: nowrap;
     overflow: hidden;
-    background-color: #6f8bb4;
+    background-color: #464848;
     color: #f0f0f0;
-    box-shadow: 0 0 5px 0px black;
+    /* box-shadow: 0 0 5px 0px black; */
     text-align: center;
     transition-duration: 0.3s;
 }
