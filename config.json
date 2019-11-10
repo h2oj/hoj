@@ -7,5 +7,7 @@
     "db_pass": "root",
     "db_name": "scoj",
     "md5_salt": "7f98d27ca899ae9c",
-    "uid_next": 1
+    "uid_next": 1,
+    "problem_path": "data/problem",
+    "record_path": "record_path"
 }

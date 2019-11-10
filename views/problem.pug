@@ -1,18 +1,41 @@
-doctype html
-html
-    head
-        meta(charset='UTF-8')
-        title Hydrogen OJ
-        link(rel='shortcut icon', href='/img/logo.jpg', type='image/x-icon')
-        link(rel='stylesheet', href='/css/global.css')
-        link(rel='stylesheet', href='/css/problem.css')
-        link(rel='stylesheet', href='/css/problem_difficulty.css')
-    body
-        div.container#container
-            include includes/leftbar.pug
-            div.container-center#container-center
-                include includes/topbar.pug
-                div.container-main.problem-main#container-main
-                    div.problem-info
-                        p #{problem.pid} #{problem.title}
-                include includes/footer.pug
+extends layout/template.pug
+
+block css
+    link(rel='stylesheet', href='/css/global.css')
+    link(rel='stylesheet', href='/css/problem.css')
+    link(rel='stylesheet', href='/css/problem_difficulty.css')
+    link(rel='stylesheet', href='/css/editormd.min.css')
+
+block js
+    script(src='/jquery.min.js')
+    script(src='/editormd.min.js')
+    script(src='/lib/marked.min.js')
+    script(src='/lib/prettify.min.js')
+
+block content
+    div.problem-head.color-card
+        p.problem-title #{problem.pid} #{problem.title}
+    div.problem-info.color-card
+        - problem.info = JSON.parse(problem.info);
+        p.problem-info-title 题目背景
+        div#problem-background: textarea(style='display: none;') #{problem.info.background}
+        p.problem-info-title 题目描述
+        div#problem-description: textarea(style='display: none;') #{problem.info.description}
+        p.problem-info-title 输入格式
+        div#problem-input: textarea(style='display: none;') #{problem.info.input}
+        p.problem-info-title 输出格式
+        div#problem-output: textarea(style='display: none;') #{problem.info.output}
+        p.problem-info-title 输入输出样例
+        - for (let i = 0; i < problem.info.sample.length; ++i)
+            p.problem-info-subtitle 输入样例##{i + 1}
+            p #{problem.info.sample[i].input}
+            p.problem-info-subtitle 输出样例##{i + 1}
+            p #{problem.info.sample[i].output}
+
+append script
+    script.
+        editormd.markdownToHTML('problem-background');
+        editormd.markdownToHTML('problem-description');
+        editormd.markdownToHTML('problem-input');
+        editormd.markdownToHTML('problem-output');
+

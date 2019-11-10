@@ -1,15 +1,4 @@
-doctype html
-html
-    head
-        meta(charset='UTF-8')
-        title Hydrogen OJ
-        link(rel='shortcut icon', href='/img/logo.jpg', type='image/x-icon')
-        link(rel='stylesheet', href='/css/global.css')
-    body
-        div.container#container
-            include includes/leftbar.pug
-            div.container-center#container-center
-                include includes/topbar.pug
-                div.container-main#container-main
-                    p Hello, world!
-                include includes/footer.pug
+extends layout/template.pug
+
+block content
+    p Hello, world!

@@ -1,35 +1,28 @@
-doctype html
-html
-    head
-        meta(charset='UTF-8')
-        title Hydrogen OJ
-        link(rel='shortcut icon', href='/img/logo.jpg', type='image/x-icon')
-        link(rel='stylesheet', href='/css/global.css')
-        link(rel='stylesheet', href='/css/tag.css')
-        link(rel='stylesheet', href='/css/user.css')
-    body
-        div.container#container
-            include includes/leftbar.pug
-            div.container-center#container-center
-                include includes/topbar.pug
-                div.container-main.user-main#container-main
-                    div.user-basicinfo
-                        img.user-avatar(src='https://github.com/alexcui03/alexcui03.github.io/raw/master/avatar.jpg')
-                        div.user-basicinfo-info
-                            p.user-basicinfo-nickname #{nickname}
-                            p.user-basicinfo-description 最惨OJ开发者
-                            p.user-basicinfo-detail 上海 | 16岁 | 男
-                            ul.user-basicinfo-tags.tag-ul
-                                li HOJ开发团队
-                                li SCM出题组
-                        div.user-basicinfo-community
-                            //div
-                                p.user-basicinfo-community-title 关注了
-                                p.user-basicinfo-community-value 0
-                            //div
-                                p.user-basicinfo-community-title 关注者
-                                p.user-basicinfo-community-value 0
-                    div.user-container
-                        div.user-selfintroduce
-                            p yyyy
-                include includes/footer.pug
+extends layout/template.pug
+
+block css
+    link(rel='stylesheet', href='/css/tag.css')
+    link(rel='stylesheet', href='/css/user.css')
+
+block content
+    div.user-basicinfo.color-card
+        img.user-avatar(src='https://github.com/alexcui03/alexcui03.github.io/raw/master/avatar.jpg')
+        div.user-basicinfo-info
+            p.user-basicinfo-nickname #{nickname}
+            p.user-basicinfo-description 最惨OJ开发者
+            p.user-basicinfo-detail 上海 | 16岁 | 男
+            ul.user-basicinfo-tags.tag-ul
+                li HOJ开发团队
+                li SCM出题组
+        div.user-basicinfo-community
+            div
+                p.user-basicinfo-community-title 关注了
+                p.user-basicinfo-community-value 0
+            div
+                p.user-basicinfo-community-title 关注者
+                p.user-basicinfo-community-value 0
+    div.user-container
+        div.user-selfintroduce.color-card
+            p yyyy
+
+

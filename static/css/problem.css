@@ -1,15 +1,31 @@
 .problem-main {
-    flex-direction: column;
 }
 
-.problem-info {
+.problem-head {
     display: flex;
+    margin-bottom: 20px;
     margin-left: auto;
     margin-right: auto;
     width: 90%;
     padding: 20px;
-    background-color: rgba(192, 224, 232, 0.769);
-    /* background-color: #c0e0e8; */
-    box-shadow: 0 0 5px #7f7f7f;
 }
 
+.problem-info {
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+    padding: 20px;
+}
+
+.problem-info > div {
+    width: auto;
+}
+
+.problem-title {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.problem-info-title {
+    font-weight: 600;
+}

@@ -2,6 +2,9 @@
 'use strict';
 
 import express from 'express';
+import path from 'path';
+import fs from 'fs';
+import config from '../config.js';
 import sql from '../sql.js';
 
 const router = express.Router();
@@ -13,8 +16,8 @@ router.get('/', (req, res) => {
     sql.query('SELECT * FROM scoj.problem', (err, result, field) => {
         if (err) throw err;
         for (let i = 0; i < result.length; ++i) {
-            //result[i].difficulty = problem_difficulty[result[i].difficulty];
             result[i].tag = result[i].tag.split(',');
+            result[i].difficulty_name = problem_difficulty[result[i].difficulty];
         }
         res.render('problemset.pug', { problem: result });
     });
@@ -23,7 +26,13 @@ router.get('/', (req, res) => {
 router.get('/:pid', (req, res) => {
     sql.query(`SELECT * FROM scoj.problem WHERE pid='${req.params.pid}'`, (err, result, field) => {
         if (err) throw err;
-        res.render('problem.pug', { problem: result[0] });
+        if (req.params.pid[0] == 'P') {
+            const problem_path = `${config.problem_path}/${req.params.pid.substr(1)}`;
+            const problem_info = fs.readFileSync(path.join(problem_path, 'problem.json'));
+            //const problem_info = fs.readFileSync('index.js');
+            result[0].info = problem_info;
+            res.render('problem.pug', { problem: result[0] });
+        }
     });
 });
 

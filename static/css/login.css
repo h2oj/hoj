@@ -2,7 +2,8 @@ input[type='text'], input[type='password'] {
     width: 350px;
     margin: 3px 0px;
     padding: 3px 5px;
-    border-color: #787878;
+    border-color: #cfcfcf;
+    border-style: solid;
     border-width: 1px;
     border-radius: 3px;
     line-height: 25px;
@@ -15,7 +16,7 @@ input[type='submit'] {
     padding: 3px 5px;
     border-width: 0px;
     border-radius: 3px;
-    background-color: #505050;
+    background-color: #7c8cfc;
     color: #ffffff;
     line-height: 25px;
     font-size: 15px;
@@ -25,8 +26,6 @@ input[type='submit'] {
     display: flex;
     flex-direction: column;
     padding: 15px;
-    background-color: #8d8d8d;
-    box-shadow: 0 0 5px #7f7f7f;
 }
 
 .login-tab {
@@ -42,17 +41,17 @@ input[type='submit'] {
 }
 
 .login-tab-select {
-    background-color: #505050;
+    background-color: #7c8cfc;
     color: #ffffff;
 }
 
 .login-signup > form > p, .login-login > form > p {
-    color: #ffffff;
+    color: #000000;
     margin: 10px 0px 0px 0px;
 }
 
 .login-title {
-    color: #ffffff;
+    color: #7c8cfc;
     font-size: 300%;
     font-weight: 100;
     text-align: center;

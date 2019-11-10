@@ -1,43 +1,35 @@
-doctype html
-html
-    head
-        meta(charset='UTF-8')
-        title Hydrogen OJ
-        script(src='/js/login.js')
-        link(rel='shortcut icon', href='/img/logo.jpg', type='image/x-icon')
-        link(rel='stylesheet', href='/css/global.css')
-        link(rel='stylesheet', href='/css/login.css')
-    body
-        div.container#container
-            include includes/leftbar.pug
-            div.container-center#container-center
-                include includes/topbar.pug
-                div.container-main#container-main
-                    div.login-frame
-                        p.login-title ScOJ
-                        div.login-tab
-                            span.login-tab-select(word-id='login.login', onclick='select(this)') Login
-                            span(word-id='login.signup', onclick='select(this)') Sign Up
-                        div.login-login#login-login
-                            form(action='/api/login', method='post')
-                                p(word-id='login.login.name') Name
-                                input(type='text', required='required', placeholder='Username/Email', name='username')
-                                p(word-id='login.login.password') Password
-                                input(type='password', required='required', placeholder='Password', name='password')
-                                br
-                                input(type='submit', value='Login')
-                        div.login-signup#login-signup(hidden='true')
-                            form(action='/api/signup', method='post')
-                                p(word-id='login.signup.name') Name
-                                input(type='text', required='required', placeholder='Username, 2-20 letters', name='username')
-                                p(word-id='login.signup.email') Email
-                                input(type='text', required='required', placeholder='Your email address', name='email')
-                                p(word-id='login.signup.password') Password
-                                input(type='password', required='required', placeholder='Password, at least 6 letters', name='password')
-                                br
-                                input(type='password', required='required', placeholder='Retype your password', name='password-retype')
-                                br
-                                input(type='submit', value='Sign Up')
-                include includes/footer.pug
+extends layout/template.pug
+
+block css
+    link(rel='stylesheet', href='/css/login.css')
+
+block content
+    div.login-frame.color-card
+        p.login-title H<sub>2</sub> OJ
+        div.login-tab
+            span.login-tab-select(word-id='login.login', onclick='select(this)') Login
+            span(word-id='login.signup', onclick='select(this)') Sign Up
+        div.login-login#login-login
+            form(action='/api/login', method='post')
+                p(word-id='login.login.name') Name
+                input(type='text', required='required', placeholder='Username/Email', name='username')
+                p(word-id='login.login.password') Password
+                input(type='password', required='required', placeholder='Password', name='password')
+                br
+                input(type='submit', value='Login')
+        div.login-signup#login-signup(hidden='true')
+            form(action='/api/signup', method='post')
+                p(word-id='login.signup.name') Name
+                input(type='text', required='required', placeholder='Username, 2-20 letters', name='username')
+                p(word-id='login.signup.email') Email
+                input(type='text', required='required', placeholder='Your email address', name='email')
+                p(word-id='login.signup.password') Password
+                input(type='password', required='required', placeholder='Password, at least 6 letters', name='password')
+                br
+                input(type='password', required='required', placeholder='Retype your password', name='password-retype')
+                br
+                input(type='submit', value='Sign Up')
+
+                
 
                 

@@ -1,4 +1,5 @@
 #!usr/bin/env node
+/* eslint-disable no-unused-vars */
 
 // SCOJ - An online judge system which supports Scratch.
 // Copyright (c) 2019 Alex Cui.
@@ -24,6 +25,8 @@ const app = express();
 
 app.set('view engine', 'pug');
 app.use(express.static('static'), express.static('node_modules/@fortawesome'));
+app.use(express.static('static'), express.static('node_modules/editor.md'));
+app.use(express.static('static'), express.static('node_modules/jquery/dist'));
 
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({ extended: false }));
@@ -57,7 +60,7 @@ app.use('/404', router_404);
 
 app.use((req, res, next) => {
     res.redirect('/404');
-})
+});
 
 app.listen(config.server_port, () => {
     logger.log(`Server: App listening on port ${config.server_port}.`);

@@ -10,7 +10,7 @@ body::-webkit-scrollbar {
 }
 
 body::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
 }
 
 body::-webkit-scrollbar-thumb {
@@ -33,7 +33,8 @@ body::-webkit-scrollbar-thumb:hover {
     margin-left: 50px;
     flex: 1;
     transition-duration: 0.3s;
-    background-image: url('/img/bg.png');
+    background-color: #efefef;
+    /* background-image: url('/img/bg.png'); */
     background-attachment: fixed;
     background-size: cover;
 }
@@ -45,7 +46,13 @@ body::-webkit-scrollbar-thumb:hover {
 .container-main {
     margin-bottom: auto;
     display: flex;
+    flex-direction: column;
     padding: 50px;
     justify-content: center;
+}
+
+.color-card {
+    background-color: white;
+    box-shadow: 0 1px 3px rgba(26, 26, 26, .1);
 }
 

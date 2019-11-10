@@ -1,0 +1,18 @@
+doctype html
+html
+    head
+        meta(charset='UTF-8')
+        title Hydrogen OJ
+        link(rel='shortcut icon', href='/img/logo.jpg', type='image/x-icon')
+        link(rel='stylesheet', href='/css/global.css')
+        block css
+        block js
+    body
+        div.container#container
+            include ../include/leftbar.pug
+            div.container-center#container-center
+                include ../include/topbar.pug
+                div.container-main#container-main
+                    block content
+                include ../include/footer.pug
+        block script

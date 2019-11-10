@@ -8,9 +8,6 @@
     margin-right: auto;
     width: 90%;
     padding: 20px;
-    background-color: rgba(192, 224, 232, 0.769);
-    /* background-color: #c0e0e8; */
-    box-shadow: 0 0 5px #7f7f7f;
 }
 
 .problemset-search {
@@ -33,19 +30,19 @@
 
 .problemset-table td {
     font-size: 17px;
-    line-height: 30px;
+    line-height: 35px;
 }
 
 .problemset-table > thead > tr > th {
-    border-bottom: 2px solid #ffffff;
+    border-bottom: 2px solid #e8e8e8;
 }
 
 .problemset-table > tbody > tr > td {
-    border-bottom: 1px solid #ffffff;
+    border-bottom: 1px solid #e8e8e8;
 }
 
 .problemset-table > tbody > tr:last-of-type > td {
-    border-bottom: 2px solid #ffffff;
+    border-bottom: 2px solid #e8e8e8;
 }
 
 .problemset-table-status {
@@ -80,12 +77,15 @@
     text-align: right;
 }
 
-.problemset-table-difficulty > span {
-    padding: 3px;
-    border-radius: 3px;
+.problemset-table-difficulty > div {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 2px;
     color: #ffffff;
     font-size: 13px;
-    font-weight: bold;
+    line-height: 13px;
+    font-weight: 400;
+    margin-left: 5px;
 }
 
 .problemset-table-tag > ul {
@@ -93,13 +93,16 @@
     padding: 0px;
 }
 
-.problemset-table-tag > span {
-    padding: 3px;
-    border-radius: 3px;
-    background-color: #8137bc;
+.problemset-table-tag > div {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 2px;
+    background-color: #7c8cfc;
     color: #ffffff;
     font-size: 13px;
-    font-weight: bold;
+    line-height: 13px;
+    font-weight: 400;
+    margin-left: 5px;
 }
 
 .problemset-table-tag > span:not(:first-child) {
