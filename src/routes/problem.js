@@ -4,6 +4,7 @@
 import express from 'express';
 import path from 'path';
 import fs from 'fs';
+import yaml from 'js-yaml';
 import config from '../config.js';
 import sql from '../sql.js';
 
@@ -28,7 +29,7 @@ router.get('/:pid', (req, res) => {
         if (err) throw err;
         if (req.params.pid[0] == 'P') {
             const problem_path = `${config.problem_path}/${req.params.pid.substr(1)}`;
-            const problem_info = fs.readFileSync(path.join(problem_path, 'problem.json'));
+            const problem_info = yaml.safeLoad(fs.readFileSync(path.join(problem_path, 'problem.yml')));
             //const problem_info = fs.readFileSync('index.js');
             result[0].info = problem_info;
             res.render('problem.pug', { problem: result[0] });

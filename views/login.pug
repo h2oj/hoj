@@ -10,28 +10,28 @@ block content
     div.login-frame.color-card
         p.login-title H<sub>2</sub> OJ
         div.login-tab
-            span.login-tab-select(word-id='login.login', onclick='select(this)') Login
-            span(word-id='login.signup', onclick='select(this)') Sign Up
+            span.login-tab-select(word-id='login.login', onclick='select(this)') 登陆
+            span(word-id='login.signup', onclick='select(this)') 注册
         div.login-login#login-login
             form(action='/api/login', method='post')
-                p(word-id='login.login.name') Name
-                input(type='text', required='required', placeholder='Username/Email', name='username')
-                p(word-id='login.login.password') Password
-                input(type='password', required='required', placeholder='Password', name='password')
+                p(word-id='login.login.name') 用户名
+                input(type='text', required='required', placeholder='用户名', name='username')
+                p(word-id='login.login.password') 密码
+                input(type='password', required='required', placeholder='密码', name='password')
                 br
-                input(type='submit', value='Login')
+                input(type='submit', value='登陆')
         div.login-signup#login-signup(hidden='true')
             form(action='/api/signup', method='post')
-                p(word-id='login.signup.name') Name
-                input(type='text', required='required', placeholder='Username, 2-20 letters', name='username')
-                p(word-id='login.signup.email') Email
-                input(type='text', required='required', placeholder='Your email address', name='email')
-                p(word-id='login.signup.password') Password
-                input(type='password', required='required', placeholder='Password, at least 6 letters', name='password')
+                p(word-id='login.signup.name') 用户名
+                input(type='text', required='required', placeholder='用户名, 2-20字符', name='username')
+                p(word-id='login.signup.email') 电子邮箱
+                input(type='text', required='required', placeholder='你的电子邮箱地址', name='email')
+                p(word-id='login.signup.password') 密码
+                input(type='password', required='required', placeholder='密码, 至少6字符', name='password')
                 br
-                input(type='password', required='required', placeholder='Retype your password', name='password-retype')
+                input(type='password', required='required', placeholder='重新输入密码', name='password-retype')
                 br
-                input(type='submit', value='Sign Up')
+                input(type='submit', value='注册')
 
                 
 

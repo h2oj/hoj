@@ -5,6 +5,7 @@ block css
     link(rel='stylesheet', href='/css/problem.css')
     link(rel='stylesheet', href='/css/problem_difficulty.css')
     link(rel='stylesheet', href='/css/editormd.min.css')
+    link(rel='stylesheet', href='/css/markdown.css')
 
 block js
     script(src='/jquery.min.js')
@@ -15,8 +16,8 @@ block js
 block content
     div.problem-head.color-card
         p.problem-title #{problem.pid} #{problem.title}
+        input.problem-button(type='button', value='提交代码')
     div.problem-info.color-card
-        - problem.info = JSON.parse(problem.info);
         p.problem-info-title 题目背景
         div#problem-background: textarea(style='display: none;') #{problem.info.background}
         p.problem-info-title 题目描述
@@ -34,8 +35,8 @@ block content
 
 append script
     script.
-        editormd.markdownToHTML('problem-background');
-        editormd.markdownToHTML('problem-description');
-        editormd.markdownToHTML('problem-input');
-        editormd.markdownToHTML('problem-output');
+        editormd.markdownToHTML('problem-background', { tex: true });
+        editormd.markdownToHTML('problem-description', { tex: true });
+        editormd.markdownToHTML('problem-input', { tex: true });
+        editormd.markdownToHTML('problem-output', { tex: true });
 
