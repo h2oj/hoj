@@ -9,6 +9,7 @@ block css
     link(rel='stylesheet', href='/monaco-editor/min/vs/editor/editor.main.css')
 
 block js
+    script(src='/js/idelang.js')
     script.
         var require = { paths: { 'vs': '/monaco-editor/min/vs' } };
     script(src='/jquery/dist/jquery.min.js')
@@ -42,12 +43,12 @@ block content
     div.problem-upload.color-card
         p.problem-info-title 提交代码
         form(action='/api/judge', method='post')
-            select(name='language')
-                option C++98
-                option C++11
-                option C++17
-                option C++2a
-                option Scratch
+            select(name='language', onchange='monaco.editor.setModelLanguage(ide.getModel(), IDELanguage[this.value])')
+                option(value='cpp98') C++98
+                option(value='cpp11') C++11
+                option(value='cpp17') C++17
+                option(value='cpp20') C++2a
+                option(value='scratch') Scratch
             div#ide.problem-ide
             div.util-button-file
                 input(type='button', value='上传代码')
@@ -60,5 +61,5 @@ append script
         editormd.markdownToHTML('problem-description', { tex: true });
         editormd.markdownToHTML('problem-input', { tex: true });
         editormd.markdownToHTML('problem-output', { tex: true });
-        monaco.editor.create(document.getElementById('ide'), { language: 'cpp' });
+        let ide = monaco.editor.create(document.getElementById('ide'), { language: 'cpp' });
 
