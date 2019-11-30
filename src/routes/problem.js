@@ -37,5 +37,13 @@ router.get('/:pid', (req, res) => {
     });
 });
 
+/*
+router.use((req, res, next) => {
+    if (req.url.includes('vs')) {
+        res.redirect(`/monaco-editor/min/vs/${req.url.substr(req.url.indexOf('vs') + 3)}`);
+    }
+});
+*/
+
 export default router;
 

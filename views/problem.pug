@@ -1,22 +1,29 @@
 extends layout/template.pug
 
 block css
-    link(rel='stylesheet', href='/css/global.css')
+    link(rel='stylesheet', href='/css/util.css')
     link(rel='stylesheet', href='/css/problem.css')
     link(rel='stylesheet', href='/css/problem_difficulty.css')
-    link(rel='stylesheet', href='/css/editormd.min.css')
     link(rel='stylesheet', href='/css/markdown.css')
+    link(rel='stylesheet', href='/editor.md/css/editormd.min.css')
+    link(rel='stylesheet', href='/monaco-editor/min/vs/editor/editor.main.css')
 
 block js
-    script(src='/jquery.min.js')
-    script(src='/editormd.min.js')
-    script(src='/lib/marked.min.js')
-    script(src='/lib/prettify.min.js')
+    script.
+        var require = { paths: { 'vs': '/monaco-editor/min/vs' } };
+    script(src='/jquery/dist/jquery.min.js')
+    script(src='/katex/dist/katex.min.js')
+    script(src='/editor.md/editormd.min.js')
+    script(src='/editor.md/lib/marked.min.js')
+    script(src='/editor.md/lib/prettify.min.js')
+    //script(src='/requirejs/require.js')
+    script(src='/monaco-editor/min/vs/loader.js')
+    script(src='/monaco-editor/min/vs/editor/editor.main.js')
+    script(src='/monaco-editor/min/vs/editor/editor.main.nls.js')
 
 block content
     div.problem-head.color-card
         p.problem-title #{problem.pid} #{problem.title}
-        input.problem-button(type='button', value='提交代码')
     div.problem-info.color-card
         p.problem-info-title 题目背景
         div#problem-background: textarea(style='display: none;') #{problem.info.background}
@@ -32,6 +39,20 @@ block content
             p #{problem.info.sample[i].input}
             p.problem-info-subtitle 输出样例##{i + 1}
             p #{problem.info.sample[i].output}
+    div.problem-upload.color-card
+        p.problem-info-title 提交代码
+        form(action='/api/judge', method='post')
+            select(name='language')
+                option C++98
+                option C++11
+                option C++17
+                option C++2a
+                option Scratch
+            div#ide.problem-ide
+            div.util-button-file
+                input(type='button', value='上传代码')
+                input(type='file')
+            input(type='submit')
 
 append script
     script.
@@ -39,4 +60,5 @@ append script
         editormd.markdownToHTML('problem-description', { tex: true });
         editormd.markdownToHTML('problem-input', { tex: true });
         editormd.markdownToHTML('problem-output', { tex: true });
+        monaco.editor.create(document.getElementById('ide'), { language: 'cpp' });
 

@@ -24,9 +24,8 @@ import { default as router_404 } from './routes/404.js';
 const app = express();
 
 app.set('view engine', 'pug');
+app.use(express.static('static'), express.static('node_modules'));
 app.use(express.static('static'), express.static('node_modules/@fortawesome'));
-app.use(express.static('static'), express.static('node_modules/editor.md'));
-app.use(express.static('static'), express.static('node_modules/jquery/dist'));
 
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({ extended: false }));
@@ -58,9 +57,11 @@ app.use('/api', router_api);
 app.use('/problem', router_problem);
 app.use('/404', router_404);
 
+/*
 app.use((req, res, next) => {
     res.redirect('/404');
 });
+*/
 
 app.listen(config.server_port, () => {
     logger.log(`Server: App listening on port ${config.server_port}.`);

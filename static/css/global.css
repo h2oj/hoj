@@ -56,3 +56,7 @@ body::-webkit-scrollbar-thumb:hover {
     box-shadow: 0 1px 3px rgba(26, 26, 26, .1);
 }
 
+.fa, .fas {
+    font-family: 'Font Awesome 5 Free' !important;
+    font-weight: 900 !important;
+}
