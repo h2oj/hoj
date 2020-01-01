@@ -6,7 +6,6 @@ import path from 'path';
 import fs from 'fs';
 import yaml from 'js-yaml';
 import config from '../config.js';
-import sql from '../sql.js';
 
 const router = express.Router();
 
@@ -14,18 +13,18 @@ const problem_difficulty = ['尚未评定', '入门', '普及-', '普及/提高-
 
 router.get('/', (req, res) => {
     const page = req.query.page || 1;
-    sql.query('SELECT * FROM scoj.problem', (err, result, field) => {
+    global.__hoj.sql.query('SELECT * FROM scoj.problem', (err, result, field) => {
         if (err) throw err;
         for (let i = 0; i < result.length; ++i) {
             result[i].tag = result[i].tag.split(',');
             result[i].difficulty_name = problem_difficulty[result[i].difficulty];
         }
-        res.render('problemset.pug', { problem: result });
+        res.render('problemlist.pug', { problem: result });
     });
 });
 
 router.get('/:pid', (req, res) => {
-    sql.query(`SELECT * FROM scoj.problem WHERE pid='${req.params.pid}'`, (err, result, field) => {
+    global.__hoj.sql.query(`SELECT * FROM scoj.problem WHERE pid='${req.params.pid}'`, (err, result, field) => {
         if (err) throw err;
         if (req.params.pid[0] == 'P') {
             const problem_path = `${config.problem_path}/${req.params.pid.substr(1)}`;

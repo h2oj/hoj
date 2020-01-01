@@ -2,3 +2,5 @@ node_modules/
 public/
 build/
 data/
+models-build/
+sql/

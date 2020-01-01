@@ -1,0 +1,117 @@
+.problemlist-main {
+    flex-direction: column;
+}
+
+.problemlist-search, .problemlist-list {
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+    padding: 20px;
+}
+
+.problemlist-search {
+    margin-bottom: 20px;
+}
+
+.problemlist-list {
+    margin-bottom: 0px;
+}
+
+.problemlist-table {
+    border-spacing: 0px;
+    width: 100%;
+}
+
+.problemlist-table th {
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.problemlist-table td {
+    font-size: 17px;
+    line-height: 35px;
+}
+
+.problemlist-table > thead > tr > th {
+    border-bottom: 2px solid #e8e8e8;
+}
+
+.problemlist-table > tbody > tr > td {
+    border-bottom: 1px solid #e8e8e8;
+}
+
+.problemlist-table > tbody > tr:last-of-type > td {
+    border-bottom: 2px solid #e8e8e8;
+}
+
+.problemlist-table-status {
+    text-align: center;
+    width: 40px;
+}
+
+.problemlist-table-pid {
+    text-align: left;
+    width: 70px;
+}
+
+.problemlist-table-title {
+    text-align: left;
+}
+
+.problemlist-table-title > a {
+    text-decoration: none;
+    color: #2f8bc9;
+}
+
+.problemlist-table-title > a:hover {
+    color: #1b4f72;
+}
+
+.problemlist-table-difficulty {
+    text-align: center;
+    width: 150px;
+}
+
+.problemlist-table-tag {
+    text-align: right;
+}
+
+.problemlist-table-difficulty > div {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 2px;
+    color: #ffffff;
+    font-size: 13px;
+    line-height: 13px;
+    font-weight: 400;
+    margin-left: 5px;
+}
+
+.problemlist-table-tag > ul {
+    margin: 0px;
+    padding: 0px;
+}
+
+.problemlist-table-tag > div {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 2px;
+    background-color: #7c8cfc;
+    color: #ffffff;
+    font-size: 13px;
+    line-height: 13px;
+    font-weight: 400;
+    margin-left: 5px;
+}
+
+.problemlist-table-tag > span:not(:first-child) {
+    margin-left: 5px;
+}
+
+.problemlist-table-pass {
+    text-align: center;
+    width: 100px;
+}
+
+

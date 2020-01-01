@@ -1,0 +1,12 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "preserveConstEnums": true,
+        "sourceMap": true,
+        "outDir": "./src/models-build",
+        "rootDir": "./src/models",
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true
+    }
+}

@@ -1,10 +1,10 @@
 {
-  "name": "scoj",
+  "name": "hoj",
   "type": "module",
-  "version": "0.1.0",
-  "description": "A scratch online judge.",
+  "version": "0.2.0",
+  "description": "Hydrogen OJ",
   "keywords": [
-    "scoj",
+    "hoj",
     "scratch",
     "oj",
     "onlinejudge"
@@ -17,10 +17,12 @@
   },
   "main": "src/server.js",
   "scripts": {
+    "build": "tsc -p .",
     "start": "node --experimental-modules src/server.js"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.10.2",
+    "@types/node": "^12.12.14",
     "body-parser": "^1.19.0",
     "colors": "^1.3.3",
     "crypto-js": "^3.1.9-1",
@@ -35,6 +37,9 @@
     "monaco-editor": "^0.18.1",
     "mysql": "^2.17.1",
     "pug": "^2.0.4",
-    "requirejs": "^2.3.6"
+    "reflect-metadata": "^0.1.13",
+    "requirejs": "^2.3.6",
+    "typeorm": "^0.2.20",
+    "typescript": "^3.7.2"
   }
 }
