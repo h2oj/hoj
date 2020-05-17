@@ -4,3 +4,4 @@ build/
 data/
 models-build/
 sql/
+sessions/

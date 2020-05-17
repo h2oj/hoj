@@ -19,6 +19,54 @@ block js
     script(src='/monaco-editor/min/vs/loader.js')
     script(src='/monaco-editor/min/vs/editor/editor.main.js')
     script(src='/monaco-editor/min/vs/editor/editor.main.nls.js')
+
+block content
+    div.problem-head.color-card
+        p.problem-title #{problem.pid} #{problem.title}
+    div.problem-info.color-card
+        p.problem-info-title 题目背景
+        div#problem-background #{problem.info.background}
+        p.problem-info-title 题目描述
+        div#problem-description #{problem.info.description}
+        p.problem-info-title 输入格式
+        div#problem-input #{problem.info.input}
+        p.problem-info-title 输出格式
+        div#problem-output #{problem.info.output}
+        p.problem-info-title 输入输出样例
+        - for (let i = 0; i < problem.info.sample.length; ++i)
+            p.problem-info-subtitle 输入样例##{i + 1}
+            p #{problem.info.sample[i].input}
+            p.problem-info-subtitle 输出样例##{i + 1}
+            p #{problem.info.sample[i].output}
+    div.problem-upload.color-card
+        p.problem-info-title 提交代码
+        form#judge-text
+            input(type='hidden', name='type', value='text')
+            select(name='lang', onchange='ideChangeLanguage(this.value)')
+                option(value='cpp98') C++98
+                option(value='cpp11') C++11
+                option(value='cpp17') C++17
+                option(value='cpp20') C++20
+                option(value='js') JavaScript
+                option(value='scratch3') Scratch 3
+            div#ide.problem-ide
+            input(type='button', value='提交', onclick='submitJudgeText()')
+        p.problem-info-title 提交文件
+        form#judge-file
+            input(type='hidden', name='type', value='file')
+            select(name='lang')
+                option(value='cpp98') C++98
+                option(value='cpp11') C++11
+                option(value='cpp17') C++17
+                option(value='cpp20') C++20
+                option(value='js') JavaScript
+                option(value='scratch3') Scratch 3
+            div.util-button-file
+                input(type='button', value='上传代码')
+                input(type='file', name='file')
+            input(type='button', value='提交', onclick='submitJudgeFile()')
+
+block script
     script.
         let markdownIt = markdownit();
         let markdownItLatex;
@@ -63,54 +111,47 @@ block js
             }
         }
 
+        function getFormData(form_id) {
+            const form = document.getElementById(form_id);
+            let data = {};
+            const inputs = form.getElementsByTagName('input');
+            for (let i in inputs) data[inputs[i].name] = inputs[i].value;
+            const selects = form.getElementsByTagName('select');
+            for (let i in selects) data[selects[i].name] = selects[i].value;
+            return data;
+        }
+
+        function submitJudgeText() {
+            let xhr = new XMLHttpRequest();
+            xhr.open('post', '/api/v1/judge', true);
+            xhr.setRequestHeader('Content-type', 'application/json');
+            xhr.onreadystatechange = () => {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    const res = JSON.parse(xhr.responseText);
+                    if (res.code === 200) {
+                        window.location.href = `/submission/${res.data.sid}`;
+                    }
+                }
+            };
+            xhr.send(JSON.stringify(getFormData('judge-text')));
+        }
+
+        function submitJudgeFile() {
+            let xhr = new XMLHttpRequest();
+            xhr.open('post', '/api/v1/judge', true);
+            //xhr.setRequestHeader('Content-type', 'multipart/form-data');
+            xhr.onreadystatechange = () => {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    const res = JSON.parse(xhr.responseText);
+                    if (res.code === 200) {
+                        window.location.href = `/submission/${res.data.sid}`;
+                    }
+                }
+            };
+            xhr.send(new FormData(document.getElementById('judge-file')));
+        }
+
         for (let item of renderElementId) {
             let ele = document.getElementById(item);
             ele.innerHTML = markdownIt.render(ele.innerHTML);
         }
-
-block content
-    div.problem-head.color-card
-        p.problem-title #{problem.pid} #{problem.title}
-    div.problem-info.color-card
-        p.problem-info-title 题目背景
-        div#problem-background #{problem.info.background}
-        p.problem-info-title 题目描述
-        div#problem-description #{problem.info.description}
-        p.problem-info-title 输入格式
-        div#problem-input #{problem.info.input}
-        p.problem-info-title 输出格式
-        div#problem-output #{problem.info.output}
-        p.problem-info-title 输入输出样例
-        - for (let i = 0; i < problem.info.sample.length; ++i)
-            p.problem-info-subtitle 输入样例##{i + 1}
-            p #{problem.info.sample[i].input}
-            p.problem-info-subtitle 输出样例##{i + 1}
-            p #{problem.info.sample[i].output}
-    div.problem-upload.color-card
-        p.problem-info-title 提交代码
-        form(action='/api/v1/judge', method='post')
-            input(type='hidden', name='type', value='text')
-            select(name='lang', onchange='ideChangeLanguage(this.value)')
-                option(value='cpp98') C++98
-                option(value='cpp11') C++11
-                option(value='cpp17') C++17
-                option(value='cpp20') C++20
-                option(value='js') JavaScript
-                option(value='scratch3') Scratch 3
-            div#ide.problem-ide
-            input(type='submit')
-        p.problem-info-title 提交文件
-        form(action='/api/v1/judge', method='post', enctype='multipart/form-data')
-            input(type='hidden', name='type', value='file')
-            select(name='lang')
-                option(value='cpp98') C++98
-                option(value='cpp11') C++11
-                option(value='cpp17') C++17
-                option(value='cpp20') C++20
-                option(value='js') JavaScript
-                option(value='scratch3') Scratch 3
-            div.util-button-file
-                input(type='button', value='上传代码')
-                input(type='file', name='file')
-            input(type='submit')
-
