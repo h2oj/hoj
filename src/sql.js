@@ -1,7 +1,7 @@
 'use strict';
 
-import mysql from 'mysql';
-import config from './config.js';
+const mysql = require('mysql');
+const config = require('./config.js');
 
 const sql = mysql.createConnection({
     host: config.db_host,
@@ -11,4 +11,4 @@ const sql = mysql.createConnection({
     database: config.db_name
 });
 
-export default sql;
+module.exports = sql;

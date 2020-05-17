@@ -1,6 +1,6 @@
 'use strict';
 
-import colors from 'colors';
+const colors = require('colors');
 
 const logger = {
     __getUTCTimeString() {
@@ -26,4 +26,4 @@ const logger = {
     }
 };
 
-export default logger;
+module.exports = logger;

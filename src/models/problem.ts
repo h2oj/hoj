@@ -1,43 +1,19 @@
 import * as TypeORM from 'typeorm';
 import Model from './model';
 
-export enum ProblemType {
-    PUBLIC = 'public',
-    USER = 'user',
-    TEAM = 'team'
-}
-
 @TypeORM.Entity('problem')
 export default class Problem extends Model {
-    @TypeORM.PrimaryColumn({ nullable: false, type: 'varchar', length: 10 })
+    @TypeORM.PrimaryColumn({ nullable: false, type: 'varchar', length: 16 })
     pid: string;
+
+    @TypeORM.Column({ nullable: false, type: 'tinyint' })
+    type: number;
 
     @TypeORM.Column({ nullable: false, type: 'varchar', length: 64 })
     title: string;
 
-    @TypeORM.Column({ nullable: false, type: 'enum', enum: ProblemType })
-    type: ProblemType;
-
     @TypeORM.Column({ nullable: false, type: 'tinyint' })
     difficulty: number;
-
-    @TypeORM.Column({ nullable: true, type: 'text' })
-    description: string;
-
-    @TypeORM.Column({ nullable: true, type: 'text' })
-    input: string;
-
-    @TypeORM.Column({ nullable: true, type: 'text' })
-    output: string;
-
-    @TypeORM.Column({ nullable: true, type: 'text' })
-    example: string;
-
-    @TypeORM.Column({ nullable: true, type: 'text' })
-    data_limit: string;
-
-    @TypeORM.Column({ nullable: true, type: 'text' })
-    hint: string;
 
     @TypeORM.Column({ nullable: false, type: 'integer'})
     ac_count: number;
@@ -47,5 +23,17 @@ export default class Problem extends Model {
 
     @TypeORM.Column({ nullable: false, type: 'boolean' })
     is_public: boolean;
+
+    static async fromPid(pid) : Promise<Problem> {
+        return Problem.findOne({
+            where: { pid: pid }
+        });
+    }
+
+    static async findPublic() : Promise<Problem[]> {
+        return Problem.find({
+            where: { is_public: true }
+        });
+    }
 }
 

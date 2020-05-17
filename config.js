@@ -1,7 +1,10 @@
-export default {
+module.exports = {
     hoj: {
-        host: 'localhost',
+        host: '0.0.0.0',
         port: 5000,
+        problemPath: './data/problem',
+        submissionPath: './data/submission',
+        tempPath: './data/temp'
     },
     db: {
         type: 'mysql',

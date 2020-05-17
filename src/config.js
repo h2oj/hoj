@@ -1,7 +1,7 @@
 'use strict';
 
-import cfg from '../config.js';
+const cfg = require('../config.js');
 
 const config = cfg;
 
-export default config;
+module.exports = config;

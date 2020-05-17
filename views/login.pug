@@ -13,15 +13,15 @@ block content
             span.login-tab-select(word-id='login.login', onclick='select(this)') 登陆
             span(word-id='login.signup', onclick='select(this)') 注册
         div.login-login#login-login
-            form(action='/api/login', method='post')
+            form#form-login
                 p(word-id='login.login.name') 用户名
                 input(type='text', required='required', placeholder='用户名', name='username')
                 p(word-id='login.login.password') 密码
                 input(type='password', required='required', placeholder='密码', name='password')
                 br
-                input(type='submit', value='登陆')
+                input(type='button', value='登陆', onclick='submitLogin()')
         div.login-signup#login-signup(hidden='true')
-            form(action='/api/signup', method='post')
+            form#form-signup
                 p(word-id='login.signup.name') 用户名
                 input(type='text', required='required', placeholder='用户名, 2-20字符', name='username')
                 p(word-id='login.signup.email') 电子邮箱
@@ -31,8 +31,59 @@ block content
                 br
                 input(type='password', required='required', placeholder='重新输入密码', name='password-retype')
                 br
-                input(type='submit', value='注册')
+                input(type='button', value='注册', onclick='submitSignup()')
 
-                
+block script
+    script.
+        function getFormData(form_id) {
+            const form = document.getElementById(form_id);
+            let data = {};
+            const inputs = form.getElementsByTagName('input');
+            for (let i in inputs) data[inputs[i].name] = inputs[i].value;
+            const selects = form.getElementsByTagName('select');
+            for (let i in selects) data[selects[i].name] = selects[i].value;
+            return data;
+        }
+
+        function submitLogin() {
+            let xhr = new XMLHttpRequest();
+            xhr.open('post', '/api/login', true);
+            xhr.setRequestHeader('Content-type', 'application/json');
+            xhr.onreadystatechange = () => {
+                if (xhr.readystate === 4 && xhr.status === 200) {
+                    window.location.href = '/user';
+                }
+            };
+            xhr.send(JSON.stringify(getFormData('form-login')));
+        }
+
+        function submitSignup() {
+            let xhr = new XMLHttpRequest();
+            xhr.open('post', '/api/signup', true);
+            xhr.setRequestHeader('Content-type', 'application/json');
+            xhr.onreadystatechange = () => {
+                if (xhr.readystate === 4 && xhr.status === 200) {
+                    window.location.href = '/user';
+                }
+            };
+            xhr.send(JSON.stringify(getFormData('form-signup')));
+        }
+
+        function select(ele) {
+            let p = ele.parentElement;
+            if (p.firstElementChild.className == 'login-tab-select') {
+                p.lastElementChild.className = 'login-tab-select';
+                p.firstElementChild.className = '';
+                document.getElementById('login-login').hidden = true;
+                document.getElementById('login-signup').hidden = false;
+            }
+            else {
+                p.firstElementChild.className = 'login-tab-select';
+                p.lastElementChild.className = '';
+                document.getElementById('login-signup').hidden = true;
+                document.getElementById('login-login').hidden = false;
+            }
+            return 0;
+        }
 
                 

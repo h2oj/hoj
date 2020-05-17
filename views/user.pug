@@ -8,21 +8,21 @@ block content
     div.user-basicinfo.color-card
         img.user-avatar(src='https://github.com/alexcui03/alexcui03.github.io/raw/master/avatar.jpg')
         div.user-basicinfo-info
-            p.user-basicinfo-nickname #{nickname}
-            p.user-basicinfo-description 最惨OJ开发者
+            p.user-basicinfo-nickname= user.nickname || user.username
+            p.user-basicinfo-description= user.description
             p.user-basicinfo-detail 上海 | 16岁 | 男
             ul.user-basicinfo-tags.tag-ul
                 li HOJ开发团队
                 li SCM出题组
-        div.user-basicinfo-community
+        div.user-basicinfo-community(style='display: none')
             div
                 p.user-basicinfo-community-title 关注了
-                p.user-basicinfo-community-value 0
+                p.user-basicinfo-community-value= user.following
             div
                 p.user-basicinfo-community-title 关注者
-                p.user-basicinfo-community-value 0
+                p.user-basicinfo-community-value= user.follower
     div.user-container
         div.user-selfintroduce.color-card
-            p yyyy
+            p= user.information
 
 

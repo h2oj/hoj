@@ -1,6 +1,6 @@
 'use strict';
 
-import express from 'express';
+const express = require('express');
 
 const router = express.Router();
 
@@ -12,5 +12,5 @@ router.get('/:sid', (req, res) => {
     res.render('submission.pug');
 });
 
-export default router;
+module.exports = router;
 

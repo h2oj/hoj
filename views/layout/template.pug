@@ -6,7 +6,6 @@ html
         link(rel='shortcut icon', href='/img/logo.jpg', type='image/x-icon')
         link(rel='stylesheet', href='/css/global.css')
         block css
-        block js
     body
         div.container#container
             include ../include/leftbar.pug
@@ -15,4 +14,5 @@ html
                 div.container-main#container-main
                     block content
                 include ../include/footer.pug
+        block js
         block script
