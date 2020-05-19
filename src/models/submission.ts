@@ -33,13 +33,13 @@ export default class Submission extends Model {
     total_space: number;
 
     /**
-     * Find a record from rid.
-     * @param {number} rid - Record id.
+     * Find a record from sid.
+     * @param {number} sid - Record id.
      * @return {Promise<Submission>} Record.
      */
-    static async fromRid(rid: number) : Promise<Submission> {
+    static async fromSid(sid: number) : Promise<Submission> {
         return Submission.findOne({
-            where: { rid: rid }
+            where: { sid: sid }
         });
     }
 
