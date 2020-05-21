@@ -5,7 +5,7 @@ block css
     link(rel='stylesheet', href='/css/user.css')
 
 block content
-    div.user-basicinfo.color-card
+    div.user-basicinfo.card
         img.user-avatar(src='https://github.com/alexcui03/alexcui03.github.io/raw/master/avatar.jpg')
         div.user-basicinfo-info
             p.user-basicinfo-nickname= user.nickname || user.username
@@ -22,7 +22,7 @@ block content
                 p.user-basicinfo-community-title 关注者
                 p.user-basicinfo-community-value= user.follower
     div.user-container
-        div.user-selfintroduce.color-card
+        div.user-selfintroduce.card
             p= user.information
 
 

@@ -1,0 +1,26 @@
+.datagrid {
+    border-spacing: 0px;
+    width: 100%;
+}
+
+.datagrid th {
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.datagrid td {
+    font-size: 17px;
+    line-height: 35px;
+}
+
+.datagrid > thead > tr > th {
+    border-bottom: 2px solid #e8e8e8;
+}
+
+.datagrid > tbody > tr > td {
+    border-bottom: 1px solid #e8e8e8;
+}
+
+.datagrid > tbody > tr:last-of-type > td {
+    border-bottom: 2px solid #e8e8e8;
+}

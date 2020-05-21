@@ -2,34 +2,30 @@ extends layout/template.pug
 
 block css
     link(rel='stylesheet', href='/css/global.css')
-    link(rel='stylesheet', href='/css/meter.css')
-    link(rel='stylesheet', href='/css/problemlist.css')
-    link(rel='stylesheet', href='/css/problem_difficulty.css')
+    link(rel='stylesheet', href='/css/datagrid.css')
+    link(rel='stylesheet', href='/css/tag.css')
 
 block content
-    div.problemlist-search.color-card
+    div.problemlist-search.card
         p(style='font-size: 20px; margin: 0px') Hydrogen OJ Problem Set
-    div.problemlist-list.color-card
-        table.problemlist-table
+    div.problemlist-list.card
+        table.datagrid
             thead
                 tr
-                    th.problemlist-table-status 状态
-                    th.problemlist-table-pid 题号
-                    th.problemlist-table-title 题目名称
-                    th.problemlist-table-tag 标签
-                    th.problemlist-table-difficulty 难度
-                    th.problemlist-table-pass 通过率
+                    th 用户
+                    th 题号
+                    th 题目名称
+                    th 评测结果
+                    //th.problemlist-table-difficulty 难度
+                    //th.problemlist-table-pass 通过率
             tbody
-                each item in problem
+                each submission in submissions
                     tr
-                        td.problemlist-table-status -
-                        td.problemlist-table-pid= item.pid
-                        td.problemlist-table-title: a(href=`/problem/${item.pid}`)= item.title
-                        td.problemlist-table-tag
-                            each t in item.tag
-                                div: span= t
-                        td.problemlist-table-difficulty: div(class=`problem-difficulty-${item.difficulty}`): span= item.difficulty_name
-                        td.problemlist-table-pass
+                        td= submission.user.username
+                        td= submission.problem.pid
+                        td.problemlist-table-title: a(href=`/problem/${submission.sid}`)= submission.problem.title
+                        - const statusText = ['Waiting', 'Accepted', 'Compile Error', 'Unaccepted'];
+                        td: div(class=`tag tag-status-${submission.status}`): span= statusText[submission.status]
+                        //td.problemlist-table-pass
                             div.meter(title=`${item.accept}/${item.try}`): div(style=`width: ${item.accept / item.try * 100 || 0}%`)
-
 

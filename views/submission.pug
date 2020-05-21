@@ -1,0 +1,21 @@
+extends layout/template.pug
+
+block css
+    link(rel='stylesheet', href='/css/global.css')
+    link(rel='stylesheet', href='/css/datagrid.css')
+    link(rel='stylesheet', href='/css/tag.css')
+
+block content
+    div.card
+        p= submission.sid
+        p= submission.pid
+    div.card
+        p.card-title-1 测试点结果
+        div.testpoint-pannel
+            - const status = ['', 'AC', 'CE', 'OLE', 'RE', 'SE', 'TLE', 'UKE', 'WA', 'PC', 'JE', 'FE', 'TE']
+            - for (let testPoint of testPoints)
+                li.testpoint-item
+                    span.testpoint-item-id= '#' + testPoint.tpid
+                    span.testpoint-item-status= status[testPoint.status]
+                    span.testpoint-item-time= testPoint.time
+                    span.testpoint-item-space= testPoint.space

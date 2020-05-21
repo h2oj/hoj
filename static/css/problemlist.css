@@ -2,22 +2,6 @@
     flex-direction: column;
 }
 
-.problemlist-search, .problemlist-list {
-    display: flex;
-    margin-left: auto;
-    margin-right: auto;
-    width: 90%;
-    padding: 20px;
-}
-
-.problemlist-search {
-    margin-bottom: 20px;
-}
-
-.problemlist-list {
-    margin-bottom: 0px;
-}
-
 .problemlist-table {
     border-spacing: 0px;
     width: 100%;
@@ -75,17 +59,6 @@
 
 .problemlist-table-tag {
     text-align: right;
-}
-
-.problemlist-table-difficulty > div {
-    display: inline-block;
-    padding: 4px 8px;
-    border-radius: 2px;
-    color: #ffffff;
-    font-size: 13px;
-    line-height: 13px;
-    font-weight: 400;
-    margin-left: 5px;
 }
 
 .problemlist-table-tag > ul {
