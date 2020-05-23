@@ -42,6 +42,7 @@ block content
         p.problem-info-title 提交代码
         form#judge-text
             input(type='hidden', name='type', value='text')
+            input(type='hidden', name='pid', value=problem.pid)
             select(name='lang', onchange='ideChangeLanguage(this.value)')
                 option(value='cpp98') C++98
                 option(value='cpp11') C++11
@@ -54,6 +55,7 @@ block content
         p.problem-info-title 提交文件
         form#judge-file
             input(type='hidden', name='type', value='file')
+            input(type='hidden', name='pid', value=problem.pid)
             select(name='lang')
                 option(value='cpp98') C++98
                 option(value='cpp11') C++11

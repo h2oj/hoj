@@ -1,4 +1,80 @@
-.testpoint-box {
-    
+.testpoint-item {
+    display: inline-block;
+    list-style: none;
+    width: 6em;
+    height: 6em;
+    border: solid 0.2em;
+    color: #ffffff;
+}
+
+.testpoint-item-id {
+    display: block;
+    font-size: 0.7em;
+    padding: 0.4em;
+}
+
+.testpoint-item-status {
+    display: block;
+    font-size: 1.25em;
+    text-align: center;
+    padding-bottom: 0.2em;
+}
+
+.testpoint-item-detail {
+    display: block;
+    font-size: 0.7em;
+    text-align: center;
+}
+
+.testpoint-status-0 {
+    background-color: #bfbfbf;
+}
+
+.testpoint-status-1 {
+    background-color: #52c41a;
+}
+
+.testpoint-status-2 {
+    background-color: #ffc116;
+}
+
+.testpoint-status-3 {
+    background-color: #0e1d69;
+}
+
+.testpoint-status-4 {
+    background-color: #9d3dcf;
+}
+
+.testpoint-status-5 {
+    background-color: #0e1d69;
+}
+
+.testpoint-status-6 {
+    background-color: #0e1d69;
+}
+
+.testpoint-status-7 {
+    background-color: #0e1d69;
+}
+
+.testpoint-status-8 {
+    background-color: #fe4c61;
+}
+
+.testpoint-status-9 {
+    background-color: #f39c11;
+}
+
+.testpoint-status-10 {
+    background-color: #0e1d69;
+}
+
+.testpoint-status-11 {
+    background-color: #0e1d69;
+}
+
+.testpoint-status-12 {
+    background-color: #0e1d69;
 }
 

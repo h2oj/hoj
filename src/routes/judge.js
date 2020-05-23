@@ -54,7 +54,7 @@ async function judge(req, res) {
 
         const judgeInfo = {
             uid: 1,
-            pid: 'P1000',
+            pid: req.body.pid,
             language: language,
             fileExt: fileExt
         };
@@ -103,7 +103,6 @@ async function judge(req, res) {
                 turbo: true
             }).then(event => {
                 event.on('point', async result => {
-                    console.log(result.id);
                     testPoints[result.id - 1].status = getPointStatusFromStr(result.status);
                     testPoints[result.id - 1].time = result.usedTime;
                     testPoints[result.id - 1].space = result.usedMemory;
