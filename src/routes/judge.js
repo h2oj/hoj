@@ -35,7 +35,7 @@ function getPointStatusFromStr(str) {
  * @router /api/v1/judge
  */
 async function judge(req, res) {
-    //try {
+    try {
         res.setHeader('Content-Type', 'application/json');
 
         let fileExt;
@@ -131,10 +131,11 @@ async function judge(req, res) {
         res.send({ code: errorCode.SUCCESS, data: {
             sid: submission.sid
         }});
-    //}
-    //catch (e) {
-        //res.send({ code: e, msg: errorMessage[e] });
-    //}
+    }
+    catch (e) {
+        logger.error(e);
+        res.send({ code: e, msg: errorMessage[e] });
+    }
 }
 
 module.exports = judge;

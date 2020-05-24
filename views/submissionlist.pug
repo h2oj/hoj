@@ -12,20 +12,30 @@ block content
         table.datagrid
             thead
                 tr
-                    th 用户
-                    th 题号
-                    th 题目名称
+                    th 评测号
+                    th 用户名
+                    th 题目
                     th 评测结果
-                    //th.problemlist-table-difficulty 难度
-                    //th.problemlist-table-pass 通过率
+                    th 语言
+                    th 时间
+                    th 空间
             tbody
                 each submission in submissions
                     tr
-                        td= submission.user.username
-                        td= submission.problem.pid
-                        td.problemlist-table-title: a(href=`/problem/${submission.sid}`)= submission.problem.title
+                        td: a(href=`/submission/${submission.sid}`)= `R${submission.sid}`
+                        td.text-center: a(href=`/user/${submission.user.uid}`)= submission.user.username
+                        td: a(href=`/problem/${submission.sid}`)= `${submission.problem.pid} ${submission.problem.title}`
                         - const statusText = ['Waiting', 'Accepted', 'Compile Error', 'Unaccepted'];
-                        td: div(class=`tag tag-status-${submission.status}`): span= statusText[submission.status]
-                        //td.problemlist-table-pass
-                            div.meter(title=`${item.accept}/${item.try}`): div(style=`width: ${item.accept / item.try * 100 || 0}%`)
+                        td.text-center: div(class=`tag tag-status-${submission.status}`): span= statusText[submission.status]
+                        - const languageName = { 'scratch3': 'Scratch 3', 'cpp98': 'C++ 98', 'cpp03': 'C++ 03', 'cpp11': 'C++ 11', 'cpp14': 'C++ 14', 'cpp17': 'C++ 17', 'cpp20': 'C++ 20' }
+                        td.text-center= languageName[submission.language]
+                        td.text-center= `${submission.total_time}ms`
+                        td.text-center= `${submission.total_space}KB`
+        div.page-selector
+            li.page-top: i.fa.fa-angle-double-left
+            li.page-last: i.fa.fa-angle-left
+            - for (let i = 1; i < 10; ++i)
+                li.page i
+            li.page-next: i.fa.fa-angle-right
+            li.page-end: i.fa.fa-angle-double-right
 

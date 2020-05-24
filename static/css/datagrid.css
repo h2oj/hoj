@@ -24,3 +24,21 @@
 .datagrid > tbody > tr:last-of-type > td {
     border-bottom: 2px solid #e8e8e8;
 }
+
+.page-selector {
+    margin-top: 0.5em;
+    text-align: right;
+}
+
+.page-selector > li {
+    display: inline-block;
+    list-style: none;
+    border: solid 1px #000000;
+    border-radius: 20%;
+    width: 1em;
+    height: 1em;
+    padding: 0.2em;
+    text-align: center;
+    line-height: 1em;
+    margin: 0.3em;
+}

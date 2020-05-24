@@ -1,4 +1,5 @@
-@import '/fontawesome-free/css/all.css';
+@import '/fontawesome-free/css/fontawesome.css';
+@import '/fontawesome-free/css/solid.css';
 
 body {
     margin: 0px;
@@ -21,6 +22,15 @@ body::-webkit-scrollbar-thumb {
 
 body::-webkit-scrollbar-thumb:hover {
     background-color: #808080;
+}
+
+a {
+    text-decoration: none;
+    color: #2f8bc9;
+}
+
+a:hover {
+    color: #1b4f72;
 }
 
 .container {
@@ -75,5 +85,17 @@ body::-webkit-scrollbar-thumb:hover {
 
 .fa, .fas {
     font-family: 'Font Awesome 5 Free' !important;
-    font-weight: 900 !important;
+    font-weight: 800 !important;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-right {
+    text-align: right;
 }
