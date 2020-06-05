@@ -32,10 +32,10 @@ block content
                         td.text-center= `${submission.total_time}ms`
                         td.text-center= `${submission.total_space}KB`
         div.page-selector
-            li.page-top: i.fa.fa-angle-double-left
-            li.page-last: i.fa.fa-angle-left
+            a: li.page-top: i.fa.fa-angle-double-left
+            a: li.page-last: i.fa.fa-angle-left
             - for (let i = 1; i < 10; ++i)
-                li.page i
-            li.page-next: i.fa.fa-angle-right
-            li.page-end: i.fa.fa-angle-double-right
+                a(href=`/submission?page=${i}`): li.page= i
+            a: li.page-next: i.fa.fa-angle-right
+            a: li.page-end: i.fa.fa-angle-double-right
 

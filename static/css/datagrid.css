@@ -30,7 +30,7 @@
     text-align: right;
 }
 
-.page-selector > li {
+.page-selector li {
     display: inline-block;
     list-style: none;
     border: solid 1px #000000;
