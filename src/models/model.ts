@@ -1,5 +1,5 @@
 import * as TypeORM from 'typeorm';
 
-export default class Model extends TypeORM.BaseEntity {
-    
+export default abstract class Model extends TypeORM.BaseEntity {
+    //abstract loadRelatives();
 }

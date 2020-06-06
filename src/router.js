@@ -9,7 +9,8 @@ const api = {
             //judgestatus: require('./routes/ws/judgestate')
         },
         judge: require('./routes/judge'),
-        judgestatus: require('./routes/judgestatus')
+        judgestatus: require('./routes/judgestatus'),
+        submission: require('./routes/api_submission')
     }
 };
 
@@ -19,5 +20,7 @@ expressWs(router);
 router.post('/api/v1/judge', fileUploadMiddleware.single('file'), api.v1.judge);
 router.get('/api/v1/judgestatus', api.v1.judgestatus);
 //router.ws('/api/v1/ws/judgestatus', api.v1.judgestatus);
+router.get('/api/v1/submission_list', api.v1.submission.getSubmissionList);
+//router.get('/api/v1/submission_count', api.v1.submission.getSumbissionCount);
 
 module.exports = router;

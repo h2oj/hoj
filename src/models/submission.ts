@@ -1,7 +1,9 @@
 import * as TypeORM from 'typeorm';
 import Model from './model';
-import TestPoint from './test_point';
 import { SubmissionStatus } from './status';
+import User from './user';
+import Problem from './problem';
+import TestPoint from './test_point';
 
 /**
  * Record model.
@@ -31,6 +33,24 @@ export default class Submission extends Model {
 
     @TypeORM.Column({ nullable: true, type: 'integer' })
     total_space: number;
+
+    @TypeORM.Column({ nullable: true, type: 'integer' })
+    code_size: number;
+
+    user?: User;
+
+    problem?: Problem;
+
+    TestPoints?: TestPoint[];
+
+    async loadRelatives() {
+        if (!this.user && this.uid) {
+            this.user = await User.fromUid(this.uid);
+        }
+        if (!this.problem && this.pid) {
+            this.problem = await Problem.fromPid(this.pid);
+        }
+    }
 
     /**
      * Find a record from sid.

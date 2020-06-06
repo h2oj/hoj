@@ -19,23 +19,44 @@ block content
                     th 语言
                     th 时间
                     th 空间
-            tbody
-                each submission in submissions
-                    tr
-                        td: a(href=`/submission/${submission.sid}`)= `R${submission.sid}`
-                        td.text-center: a(href=`/user/${submission.user.uid}`)= submission.user.username
-                        td: a(href=`/problem/${submission.sid}`)= `${submission.problem.pid} ${submission.problem.title}`
-                        - const statusText = ['Waiting', 'Accepted', 'Compile Error', 'Unaccepted'];
-                        td.text-center: div(class=`tag tag-status-${submission.status}`): span= statusText[submission.status]
-                        - const languageName = { 'scratch3': 'Scratch 3', 'cpp98': 'C++ 98', 'cpp03': 'C++ 03', 'cpp11': 'C++ 11', 'cpp14': 'C++ 14', 'cpp17': 'C++ 17', 'cpp20': 'C++ 20' }
-                        td.text-center= languageName[submission.language]
-                        td.text-center= `${submission.total_time}ms`
-                        td.text-center= `${submission.total_space}KB`
+            tbody#datagrid
         div.page-selector
-            a: li.page-top: i.fa.fa-angle-double-left
-            a: li.page-last: i.fa.fa-angle-left
+            li.page-top: i.fa.fa-angle-double-left
+            li.page-last: i.fa.fa-angle-left
             - for (let i = 1; i < 10; ++i)
-                a(href=`/submission?page=${i}`): li.page= i
-            a: li.page-next: i.fa.fa-angle-right
-            a: li.page-end: i.fa.fa-angle-double-right
+                li(onclick=`loadPage(${i}, 10)`).page: = i
+            li.page-next: i.fa.fa-angle-right
+            li.page-end: i.fa.fa-angle-double-right
 
+block script
+    script.
+        const statusText = ['Waiting', 'Accepted', 'Compile Error', 'Unaccepted'];
+        const languageName = { 'scratch3': 'Scratch 3', 'cpp98': 'C++ 98', 'cpp03': 'C++ 03', 'cpp11': 'C++ 11', 'cpp14': 'C++ 14', 'cpp17': 'C++ 17', 'cpp20': 'C++ 20' }
+        
+        function loadPage(page, each) {
+            let xhr = new XMLHttpRequest();
+            xhr.open('get', `/api/v1/submission_list?page=${page}&each=${each}`, true);
+            xhr.onreadystatechange = () => {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    const res = JSON.parse(xhr.responseText);
+                    if (res.code === 200) {
+                        let datagrid = document.getElementById('datagrid');
+                        datagrid.innerHTML = '';
+                        for (let item of res.data) {
+                            let ele = document.createElement('tr');
+                            ele.innerHTML = `<td><a href="/submission/${item.sid}">R${item.sid}</a></td>` +
+                                `<td class="text-center"><a href="/user/${item.user.uid}">${item.user.username}</a></td>` +
+                                `<td><a href="/problem/${item.sid}">${item.problem.pid} ${item.problem.title}</a></td>` +
+                                `<td class="text-center"><div class="tag tag-status-${item.status}"><span>${statusText[item.status]}</span></div></td>`+
+                                `<td class="text-center">${languageName[item.language]}</td>` +
+                                `<td class="text-center">${item.total_time}ms</td>` +
+                                `<td class="text-center">${item.total_space}KB</td>`
+                            datagrid.appendChild(ele);
+                        }
+                    }
+                }
+            };
+            xhr.send();
+        }
+
+        window.addEventListener('load', () => loadPage(1, 10));

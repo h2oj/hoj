@@ -10,17 +10,7 @@ const Problem = require('../models-build/problem').default;
 const router = express.Router();
 
 router.get('/', async (req, res) => {
-    let page = req.query.page || 1;
-    let each = req.query.each || 5;
-    let submissions = await Submission.find({
-        skip: (page - 1) * each,
-        take: each
-    });
-    for (let submission of submissions) {
-        submission.user = await User.fromUid(submission.uid);
-        submission.problem = await Problem.fromPid(submission.pid);
-    }
-    res.render('submissionlist.pug', { submissions: submissions });
+    res.render('submissionlist.pug');
 });
 
 router.get('/:sid', async (req, res) => {
