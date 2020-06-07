@@ -37,18 +37,35 @@ export default class Submission extends Model {
     @TypeORM.Column({ nullable: true, type: 'integer' })
     code_size: number;
 
+    @TypeORM.Column({ nullable: true, type: 'integer' })
+    submit_time: number;
+
     user?: User;
 
     problem?: Problem;
 
-    TestPoints?: TestPoint[];
+    test_points?: TestPoint[];
 
     async loadRelatives() {
+        await this.loadUser();
+        await this.loadProblem();
+    }
+
+    async loadUser() {
         if (!this.user && this.uid) {
             this.user = await User.fromUid(this.uid);
         }
+    }
+
+    async loadProblem() {
         if (!this.problem && this.pid) {
             this.problem = await Problem.fromPid(this.pid);
+        }
+    }
+
+    async loadTestPoints() {
+        if (!this.test_points) {
+            this.test_points = await TestPoint.fromSid(this.sid);
         }
     }
 

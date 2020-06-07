@@ -10,13 +10,35 @@ const Problem = require('../models-build/problem').default;
 const router = express.Router();
 
 router.get('/', async (req, res) => {
-    res.render('submissionlist.pug');
+    res.render('submissions.pug');
 });
 
 router.get('/:sid', async (req, res) => {
     let submission = await Submission.fromSid(req.params.sid);
-    let testPoints = await TestPoint.fromSid(req.params.sid);
-    res.render('submission.pug', { submission: submission, testPoints: testPoints });
+    await submission.loadUser();
+    await submission.loadProblem();
+    await submission.loadTestPoints();
+    const data = {
+        sid: submission.sid,
+        uid: submission.uid,
+        pid: submission.pid,
+        language: submission.language,
+        status: submission.status,
+        total_time: submission.total_time,
+        total_space: submission.total_space,
+        code_size: submission.code_size,
+        user: {
+            uid: submission.user.uid,
+            username: submission.user.username,
+            nickname: submission.user.nickname
+        },
+        problem: {
+            pid: submission.problem.pid,
+            title: submission.problem.title
+        },
+        test_points: submission.test_points
+    };
+    res.render('submission.pug', { data: data });
 });
 
 module.exports = router;

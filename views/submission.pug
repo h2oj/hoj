@@ -8,14 +8,37 @@ block css
 
 block content
     div.card
-        p= submission.sid
-        p= submission.pid
+        table.datagrid
+            thead
+                tr
+                    th 评测号
+                    th 用户名
+                    th 题目
+                    th 评测结果
+                    th 语言
+                    th 时间
+                    th 空间
+                    th 文件大小
+                    th 提交时间
+            tbody#datagrid
+                tr
+                    - const statusText = ['Waiting', 'Accepted', 'Compile Error', 'Unaccepted'];
+                    - const languageName = { 'scratch3': 'Scratch 3', 'cpp98': 'C++ 98', 'cpp03': 'C++ 03', 'cpp11': 'C++ 11', 'cpp14': 'C++ 14', 'cpp17': 'C++ 17', 'cpp20': 'C++ 20' }
+                    td= '#' + data.sid
+                    td.text-center: a(href=`/user/${data.uid}`)= data.user.username
+                    td: a(href=`/problem/${data.pid}`)= data.pid + ' ' + data.problem.title
+                    td.text-center: div.tag(class=`tag-status-${data.status}`)= statusText[data.status]
+                    td.text-center= languageName[data.language]
+                    td.text-center= data.total_time + 'ms'
+                    td.text-center= data.total_space + 'KB'
+                    td.text-center= data.code_size + 'KB'
+                    td.text-center= data.submit_time
     div.card
         p.card-title-1 测试点结果
         div.testpoint-pannel
             - const status = ['&nbsp;', 'AC', 'CE', 'OLE', 'RE', 'SE', 'TLE', 'UKE', 'WA', 'PC', 'JE', 'FE', 'TE']
-            - for (let testPoint of testPoints)
-                li.testpoint-item(class=`testpoint-status-${testPoint.status}`)
-                    span.testpoint-item-id= '#' + testPoint.tpid
-                    span.testpoint-item-status !{status[testPoint.status]}
-                    span.testpoint-item-detail= testPoint.time + 'ms/' + testPoint.space + 'KB'
+            - for (let test_point of data.test_points)
+                li.testpoint-item(class=`testpoint-status-${test_point.status}`)
+                    span.testpoint-item-id= '#' + test_point.tpid
+                    span.testpoint-item-status !{status[test_point.status]}
+                    span.testpoint-item-detail= test_point.time + 'ms/' + test_point.space + 'KB'

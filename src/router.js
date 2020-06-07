@@ -22,5 +22,6 @@ router.get('/api/v1/judgestatus', api.v1.judgestatus);
 //router.ws('/api/v1/ws/judgestatus', api.v1.judgestatus);
 router.get('/api/v1/submission_list', api.v1.submission.getSubmissionList);
 //router.get('/api/v1/submission_count', api.v1.submission.getSumbissionCount);
+router.get('/api/v1/submission_info', api.v1.submission.getSubmissionInfo);
 
 module.exports = router;

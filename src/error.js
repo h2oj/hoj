@@ -10,6 +10,7 @@ const errorCode = {
     JUDGE_UNKNOWN_SUBMISSION_TYPE: 3001,
     JUDGE_UNKNOWN_LANGUAGE: 3002,
     JUDGE_UNKNOWN_FILE: 3003,
+    WRONG_PARAMS: 7001,
 };
 
 const errorMessage = {
@@ -21,7 +22,8 @@ const errorMessage = {
     2005: 'username or password error',
     3001: 'unknown submission type',
     3002: 'unknown language',
-    3003: 'unknown file'
+    3003: 'unknown file',
+    7001: 'wrong params'
 };
 
 module.exports = {

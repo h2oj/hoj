@@ -6,9 +6,9 @@ block css
     link(rel='stylesheet', href='/css/tag.css')
 
 block content
-    div.problemlist-search.card
+    div.card.problemlist-search
         p(style='font-size: 20px; margin: 0px') Hydrogen OJ Problem Set
-    div.problemlist-list.card
+    div.card.problemlist-list
         table.datagrid
             thead
                 tr
@@ -19,6 +19,8 @@ block content
                     th 语言
                     th 时间
                     th 空间
+                    th 文件大小
+                    th 提交时间
             tbody#datagrid
         div.page-selector
             li.page-top: i.fa.fa-angle-double-left
@@ -44,13 +46,15 @@ block script
                         datagrid.innerHTML = '';
                         for (let item of res.data) {
                             let ele = document.createElement('tr');
-                            ele.innerHTML = `<td><a href="/submission/${item.sid}">R${item.sid}</a></td>` +
+                            ele.innerHTML = `<td><a href="/submission/${item.sid}">#${item.sid}</a></td>` +
                                 `<td class="text-center"><a href="/user/${item.user.uid}">${item.user.username}</a></td>` +
-                                `<td><a href="/problem/${item.sid}">${item.problem.pid} ${item.problem.title}</a></td>` +
+                                `<td><a href="/problem/${item.pid}">${item.problem.pid} ${item.problem.title}</a></td>` +
                                 `<td class="text-center"><div class="tag tag-status-${item.status}"><span>${statusText[item.status]}</span></div></td>`+
                                 `<td class="text-center">${languageName[item.language]}</td>` +
                                 `<td class="text-center">${item.total_time}ms</td>` +
-                                `<td class="text-center">${item.total_space}KB</td>`
+                                `<td class="text-center">${item.total_space}KB</td>` +
+                                `<td class="text-center">${item.code_size}KB</td>` +
+                                `<td class="text-center">${item.submit_time}</td>`
                             datagrid.appendChild(ele);
                         }
                     }
