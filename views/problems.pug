@@ -1,0 +1,76 @@
+extends layout/template.pug
+
+block css
+    link(rel='stylesheet', href='/css/global.css')
+    link(rel='stylesheet', href='/css/meter.css')
+    link(rel='stylesheet', href='/css/problemlist.css')
+    link(rel='stylesheet', href='/css/datagrid.css')
+    link(rel='stylesheet', href='/css/tag.css')
+
+block content
+    div.card
+        p(style='font-size: 20px; margin: 0px') Hydrogen OJ Problem Set
+    div.card
+        table.datagrid
+            thead
+                tr
+                    th.problemlist-table-status 状态
+                    th.problemlist-table-pid 题号
+                    th.problemlist-table-title 题目名称
+                    th.problemlist-table-tag 标签
+                    th.problemlist-table-difficulty 难度
+                    th.problemlist-table-pass 通过率
+            tbody#datagrid
+                each item in problem
+                    tr
+                        td.problemlist-table-status -
+                        td.problemlist-table-pid= item.pid
+                        td.problemlist-table-title: a(href=`/problem/${item.pid}`)= item.title
+                        td.problemlist-table-tag
+                        - const problem_difficulty = ['尚未评定', '入门', '普及-', '普及/提高-', '普及+/提高', '提高+/省选-', '省选/NOI-', 'NOI/NOI+/CTSC'];
+                        td.problemlist-table-difficulty: div(class=`tag tag-difficulty-${item.difficulty}`): span= problem_difficulty[item.difficulty]
+                        td.problemlist-table-pass
+                            div.meter(title=`${item.ac_count}/${item.submit_count}`): div(style=`width: ${item.ac_count / item.submit_count * 100 || 0}%`)
+        div.page-selector
+            li.page-top: i.fa.fa-angle-double-left
+            li.page-last: i.fa.fa-angle-left
+            - for (let i = 1; i < 10; ++i)
+                li(onclick=`loadPage(${i}, 10)`).page: = i
+            li.page-next: i.fa.fa-angle-right
+            li.page-end: i.fa.fa-angle-double-right
+
+block script
+    script.
+        const problemDifficulty = ['尚未评定', '入门', '普及-', '普及/提高-', '普及+/提高', '提高+/省选-', '省选/NOI-', 'NOI/NOI+/CTSC'];
+
+        function loadPage(page, each) {
+            let xhr = new XMLHttpRequest();
+            xhr.open('get', `/api/v1/problem_list?page=${page}&each=${each}`, true);
+            xhr.onreadystatechange = () => {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    const res = JSON.parse(xhr.responseText);
+                    if (res.code === 200) {
+                        let datagrid = document.getElementById('datagrid');
+                        datagrid.innerHTML = '';
+                        for (let item of res.data) {
+                            let ele = document.createElement('tr');
+                            ele.innerHTML = `<td class="problemlist-table-status">-</td>` +
+                                `<td class="problemlist-table-pid">${item.pid}</td>` +
+                                `<td class="problemlist-table-title"><a href="/problem/${item.pid}">${item.title}</a></td>` +
+                                `<td class="problemlist-table-tag"></td>` +
+                                `<td class="problemlist-table-difficulty">` +
+                                    `<div class="tag tag-difficulty-${item.difficulty}"><span>${problemDifficulty[item.difficulty]}</span></div>` +
+                                `</td>` +
+                                `<td class="problemlist-table-pass">` +
+                                    `<div class="meter" title="${item.ac_count}/${item.submit_count}">` +
+                                        `<div style="width: ${item.ac_count / item.submit_count * 100 || 0}%"></div>` +
+                                    `</div>` +
+                                `</td>`;
+                            datagrid.appendChild(ele);
+                        }
+                    }
+                }
+            };
+            xhr.send();
+        }
+

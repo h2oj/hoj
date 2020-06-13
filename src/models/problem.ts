@@ -1,5 +1,6 @@
 import * as TypeORM from 'typeorm';
 import Model from './model';
+import User from './user';
 
 @TypeORM.Entity('problem')
 export default class Problem extends Model {
@@ -23,6 +24,21 @@ export default class Problem extends Model {
 
     @TypeORM.Column({ nullable: false, type: 'boolean' })
     is_public: boolean;
+
+    @TypeORM.Column({ nullable: false, type: 'integer'})
+    uid: number;
+
+    publisher?: User;
+
+    async loadRelatives() {
+        await this.loadPublisher();
+    }
+
+    async loadPublisher() {
+        if (!this.publisher && this.uid) {
+            this.publisher = await User.fromUid(this.uid);
+        }
+    }
 
     static async fromPid(pid) : Promise<Problem> {
         return Problem.findOne({

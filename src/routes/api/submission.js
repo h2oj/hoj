@@ -1,15 +1,19 @@
 'use strict';
 
-const { errorCode, errorMessage } = require('../error');
-const config = require('../config');
-const logger = require('../logger');
-const util = require('../util');
+const { errorCode, errorMessage } = require('../../error');
+const config = require('../../config');
+const logger = require('../../logger');
+const util = require('../../util');
 
-const Submission = require('../models-build/submission').default;
-const TestPoint = require('../models-build/test_point').default;
-const User = require('../models-build/user').default;
-const Problem = require('../models-build/problem').default;
+const Submission = require('../../models-build/submission').default;
+const TestPoint = require('../../models-build/test_point').default;
+const User = require('../../models-build/user').default;
+const Problem = require('../../models-build/problem').default;
 
+/**
+ * Get submissions.
+ * @router get /api/v1/submission_list
+ */
 async function getSubmissionList(req, res) {
     let page = req.query.page || 1;
     let each = req.query.each || 5;
@@ -45,6 +49,10 @@ async function getSubmissionList(req, res) {
     });
 }
 
+/**
+ * Get detail of submission.
+ * @router get /api/v1/submission_info
+ */
 async function getSubmissionInfo(req, res) {
     if (req.query.sid === undefined) {
         res.json({
@@ -83,16 +91,7 @@ async function getSubmissionInfo(req, res) {
     }
 }
 
-/*
-async function getSumbissionCount(req, res) {
-    let submissions = await Submission.find({
-
-    });
-}
-*/
-
 module.exports = {
     getSubmissionList,
-    //getSumbissionCount,
     getSubmissionInfo
 };

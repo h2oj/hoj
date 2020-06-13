@@ -10,8 +10,10 @@ block css
 block js
     //script(src='/jquery/dist/jquery.min.js')
     //script(src='/katex/dist/katex.min.js')
-    script(src='/markdown-it/dist/markdown-it.min.js')
+    //script(src='/markdown-it/dist/markdown-it.min.js')
     //script(src='/requirejs/require.js')
+    script(src='/showdown/dist/showdown.min.js')
+    script(src='/showdown-katex/dist/showdown-katex.min.js')
     script.
         var require = { paths: {
             'vs': '/monaco-editor/min/vs'
@@ -70,8 +72,7 @@ block content
 
 block script
     script.
-        let markdownIt = markdownit();
-        let markdownItLatex;
+        const showdown = new showdown.Converter();
 
         let codeEditor = monaco.editor.create(document.getElementById('ide'), {
             value: [

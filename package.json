@@ -43,6 +43,8 @@
     "requirejs": "^2.3.6",
     "scratch-judge": "^1.1.0",
     "session-file-store": "^1.4.0",
+    "showdown": "^1.9.1",
+    "showdown-katex": "^0.8.0",
     "typeorm": "^0.2.20",
     "typescript": "^3.7.2"
   }

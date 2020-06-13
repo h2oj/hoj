@@ -6,15 +6,38 @@ const path = require('path');
 const fs = require('fs');
 const yaml = require('js-yaml');
 const config = require('../config');
+const { errorCode, errorMessage } = require('../error');
 
 const Problem = require('../models-build/problem').default;
 
 const router = express.Router();
 
 router.get('/', async (req, res) => {
-    const page = req.query.page || 1;
-    const problems = await Problem.findPublic();
-    res.render('problemlist.pug', { problem: problems });
+    let page = req.query.page || 1;
+    let each = req.query.each || 5;
+    let problems = await Problem.find({
+        skip: (page - 1) * each,
+        take: each
+    });
+    for (let problem of problems) {
+        await problem.loadRelatives();
+    }
+
+    res.render('problems.pug', {
+        problem: problems.map(problem => ({
+            pid: problem.pid,
+            type: problem.type,
+            title: problem.title,
+            difficulty: problem.difficulty,
+            ac_count: problem.ac_count,
+            submit_cout: problem.submit_count,
+            publisher: {
+                uid: problem.publisher.uid,
+                username: problem.publisher.username,
+                nickname: problem.publisher.nickname
+            }
+        }))
+    });
 });
 
 router.get('/:pid', async (req, res) => {
