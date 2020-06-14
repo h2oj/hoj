@@ -1,5 +1,12 @@
 link(rel='stylesheet', href='/css/topbar.css')
 
 div.topbar
-    span.topbar-title(onclick='window.location = \'/\'') H<sub>2</sub> OJ
-
+    div.topbar-left: p.topbar-title H<sub>2</sub> OJ
+    div.topbar-left
+        ul.topbar-menubar
+            li(onclick='window.location=\'/\'') 首页
+            li(onclick='window.location=\'/problem\'') 题库
+            li(onclick='window.location=\'/contest\'') 比赛
+            li(onclick='window.location=\'/submission\'') 记录
+    div.topbar-user
+        div.topbar-avatar

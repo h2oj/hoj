@@ -8,11 +8,9 @@ html
         block css
     body
         div.container#container
-            include ../include/leftbar.pug
-            div.container-center#container-center
-                include ../include/topbar.pug
-                div.container-main#container-main
-                    block content
-                include ../include/footer.pug
+            include ../include/topbar.pug
+            div.container-main#container-main
+                block content
+            include ../include/footer.pug
         block js
         block script

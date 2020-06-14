@@ -9,7 +9,38 @@
     font-family: 'microsoft yahei';
 }
 
-.topbar-title {
-    margin-left: 20px;
+.topbar-left {
+    float: left;
+    height: 100%;
 }
 
+.topbar-title {
+    display: inline-block;
+    margin: 0em 1.5em;
+    height: 100%;
+}
+
+.topbar-menubar {
+    display: inline-block;
+    margin: 0em;
+    padding: 0em;
+    height: 100%;
+    font-size: 0.75em;
+}
+
+.topbar-menubar > li {
+    list-style: none;
+    float: left;
+    height: calc(100% - 3px);
+    line-height: 44px;
+    width: 4em;
+    text-align: center;
+    transition-duration: 0.3s;
+    border-top: transparent solid 3px;
+    background-color: #293333;
+}
+
+.topbar-menubar > li:hover {
+    border-top: #7c8cfc solid 3px;
+    background-color: #111414;
+}

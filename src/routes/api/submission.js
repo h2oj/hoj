@@ -16,7 +16,7 @@ const Problem = require('../../models-build/problem').default;
  */
 async function getSubmissionList(req, res) {
     let page = req.query.page || 1;
-    let each = req.query.each || 5;
+    let each = req.query.each || 15;
     let submissions = await Submission.find({
         skip: (page - 1) * each,
         take: each

@@ -9,10 +9,8 @@ html
         block js
     body
         div.container#container
-            include ../include/leftbar.pug
-            div.container-center#container-center
-                include ../include/topbar.pug
-                div.container-main#container-main(style='flex-direction: row;')
-                    block content
-                include ../include/footer.pug
+            include ../include/topbar.pug
+            div.container-main#container-main(style='flex-direction: row;')
+                block content
+            include ../include/footer.pug
         block script
