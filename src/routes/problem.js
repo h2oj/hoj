@@ -14,14 +14,11 @@ const router = express.Router();
 
 router.get('/', async (req, res) => {
     let page = req.query.page || 1;
-    let each = req.query.each || 5;
+    let each = req.query.each || 15;
     let problems = await Problem.find({
         skip: (page - 1) * each,
         take: each
     });
-    for (let problem of problems) {
-        await problem.loadRelatives();
-    }
 
     res.render('problems.pug', {
         problem: problems.map(problem => ({
@@ -30,12 +27,7 @@ router.get('/', async (req, res) => {
             title: problem.title,
             difficulty: problem.difficulty,
             ac_count: problem.ac_count,
-            submit_cout: problem.submit_count,
-            publisher: {
-                uid: problem.publisher.uid,
-                username: problem.publisher.username,
-                nickname: problem.publisher.nickname
-            }
+            submit_cout: problem.submit_count
         }))
     });
 });

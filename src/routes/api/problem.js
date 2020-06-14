@@ -1,5 +1,8 @@
 'use strict';
 
+const fs = require('fs');
+const yaml = require('js-yaml');
+
 const { errorCode, errorMessage } = require('../../error');
 const config = require('../../config');
 const logger = require('../../logger');
@@ -46,7 +49,31 @@ async function getProblemList(req, res) {
  * @router get /api/v1/problem_info
  */
 async function getProblemInfo(req, res) {
-    
+    const problem = await Problem.fromPid(req.params.pid);
+    if (problem && problem.is_public) {
+        const problem_file = `${config.hoj.problemPath}/${req.params.pid}`;
+        const problem_info = yaml.safeLoad(fs.readFileSync(`${problem_file}/problem.yml`));
+        res.json({
+            code: errorCode.SUCCESS,
+            data: {
+                pid: problem.pid,
+                type: problem.type,
+                title: problem.title,
+                difficulty: problem.difficulty,
+                ac_count: problem.ac_count,
+                submit_cout: problem.submit_count,
+                user: {
+                    uid: problem.publisher.uid,
+                    username: problem.publisher.username,
+                    nickname: problem.publisher.nickname
+                },
+                info: problem_info
+            }
+        });
+    }
+    else {
+        res.redirect('/404');
+    }
 }
 
 module.exports = {
