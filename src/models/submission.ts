@@ -52,7 +52,7 @@ export default class Submission extends Model {
     }
 
     async loadUser() {
-        if (!this.user && this.uid) {
+        if (!this.user && this.uid !== undefined) {
             this.user = await User.fromUid(this.uid);
         }
     }

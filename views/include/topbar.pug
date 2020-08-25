@@ -11,8 +11,9 @@ div.topbar
 
     div.topbar-right
         ul.topbar-menubar
-            if user
-                li(onclick='window.location=\'/user\'')= user.username
+            if nowUser
+                li()= nowUser.username
+                li(onclick='window.location=\'/logout\'') 退出
             else
                 li(onclick='window.location=\'/login\'') 登录
     div.topbar-user

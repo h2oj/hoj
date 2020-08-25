@@ -39,12 +39,13 @@
     float: left;
     height: calc(100% - 3px);
     line-height: 44px;
-    width: 4em;
+    min-width: 4em;
     text-align: center;
     transition-duration: 0.3s;
     border-top: transparent solid 3px;
     background-color: #293333;
 }
+
 
 .topbar-menubar > li:hover {
     border-top: #7c8cfc solid 3px;

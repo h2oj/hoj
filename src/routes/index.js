@@ -8,8 +8,8 @@ const router = express.Router();
 
 router.get('/', async (req, res) => {
     if (req.session.user_id) {
-        const user = await User.fromUid(req.session.user_id);
-        res.render('index.pug', { user: user });
+        const nowUser = await User.fromUid(req.session.user_id);
+        res.render('index.pug', { nowUser: nowUser });
     }else {
         res.render('index.pug');
     }
