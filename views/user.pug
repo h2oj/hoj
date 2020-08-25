@@ -6,7 +6,7 @@ block css
 
 block content
     div.user-basicinfo.card
-        img.user-avatar(src='https://github.com/alexcui03/alexcui03.github.io/raw/master/avatar.jpg')
+        img.user-avatar(src='https://api.paugram.com/gravatar/?replace=retro&email='+user.email)
         div.user-basicinfo-info
             p.user-basicinfo-nickname= user.nickname || user.username
             p.user-basicinfo-description= user.description

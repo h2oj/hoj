@@ -14,6 +14,12 @@
     height: 100%;
 }
 
+.topbar-right {
+    float: right;
+    height: 100%;
+}
+
+
 .topbar-title {
     display: inline-block;
     margin: 0em 1.5em;

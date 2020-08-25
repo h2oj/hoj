@@ -8,5 +8,13 @@ div.topbar
             li(onclick='window.location=\'/problem\'') 题库
             li(onclick='window.location=\'/contest\'') 比赛
             li(onclick='window.location=\'/submission\'') 记录
+
+    div.topbar-right
+        ul.topbar-menubar
+            if user
+                li(onclick='window.location=\'/user\'')= user.username
+            else
+                li(onclick='window.location=\'/login\'') 登录
     div.topbar-user
         div.topbar-avatar
+            
