@@ -25,7 +25,6 @@ async function getProblemList(req, res) {
     for (let problem of problems) {
         await problem.loadRelatives();
     }
-
     res.json({
         code: errorCode.SUCCESS,
         data: problems.map(problem => ({
