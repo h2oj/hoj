@@ -27,7 +27,7 @@ router.get('/', async (req, res) => {
             title: problem.title,
             difficulty: problem.difficulty,
             ac_count: problem.ac_count,
-            submit_cout: problem.submit_count
+            submit_count: problem.submit_count
         }))
     });
 });

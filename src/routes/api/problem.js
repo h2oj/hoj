@@ -34,7 +34,7 @@ async function getProblemList(req, res) {
             title: problem.title,
             difficulty: problem.difficulty,
             ac_count: problem.ac_count,
-            submit_cout: problem.submit_count,
+            submit_count: problem.submit_count,
             user: {
                 uid: problem.publisher.uid,
                 username: problem.publisher.username,
@@ -61,7 +61,7 @@ async function getProblemInfo(req, res) {
                 title: problem.title,
                 difficulty: problem.difficulty,
                 ac_count: problem.ac_count,
-                submit_cout: problem.submit_count,
+                submit_count: problem.submit_count,
                 user: {
                     uid: problem.publisher.uid,
                     username: problem.publisher.username,
