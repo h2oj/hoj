@@ -34,7 +34,7 @@ router.get('/', async (req, res) => {
 
 router.get('/:pid', async (req, res) => {
     const problem = await Problem.fromPid(req.params.pid);
-    if (true) {
+    if (req.session.user_id) {
         const problem_file = `${config.hoj.problemPath}/${req.params.pid}`;
         problem.info = yaml.safeLoad(fs.readFileSync(`${problem_file}/problem.yml`));
         res.render('problem.pug', { problem: problem });
