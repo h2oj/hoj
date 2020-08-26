@@ -1,12 +1,13 @@
 extends layout/template.pug
 
 block css
-    link(rel='stylesheet', href='/css/util.css')
     link(rel='stylesheet', href='/css/problem.css')
+    link(rel='stylesheet', href='/css/util.css')
     link(rel='stylesheet', href='/css/tag.css')
     link(rel='stylesheet', href='/css/markdown.css')
     link(rel='stylesheet', data-name='vs/editor/editor.main', href='/monaco-editor/min/vs/editor/editor.main.css')
     link(rel='stylesheet', href='/katex/dist/katex.min.css')
+
 
 block js
     script(src='/showdown/dist/showdown.min.js')
@@ -22,6 +23,13 @@ block js
 block content
     div.problem-head.card
         p.problem-title #{problem.pid} #{problem.title}
+        - var classes = problem.class.split(",")
+        each tag in classes
+            div(class=`tag tag-difficulty-1`)
+                span= tag
+        div(class=`tag tag-difficulty-0`): span= "出题人: " + user.username
+        div(class=`tag tag-difficulty-0`): span= "内存限制: " + problem.config.substacks[0].memory_limit/1024 + "MiB"
+        div(class=`tag tag-difficulty-0`): span= "时间限制: " + problem.config.substacks[0].time_limit + "ms"
     div.problem-info.card
         p.problem-info-title 题目背景
         div#problem-background #{problem.info.background}
@@ -32,11 +40,12 @@ block content
         p.problem-info-title 输出格式
         div#problem-output #{problem.info.output}
         p.problem-info-title 输入输出样例
+        
         - for (let i = 0; i < problem.info.sample.length; ++i)
-            p.problem-info-subtitle 输入样例##{i + 1}
-            p #{problem.info.sample[i].input}
-            p.problem-info-subtitle 输出样例##{i + 1}
-            p #{problem.info.sample[i].output}
+            p.problem-info-subtitle 输入 ##{i + 1} #[input(type= 'button', id= `copyInputExample${i+1}`, class= "problem-info-btn", value= '复制', onclick= `copyToClipboard("${problem.info.sample[i].input}","copyInputExample${i+1}");`)]
+            p.problem-info-example #{problem.info.sample[i].input}
+            p.problem-info-subtitle 输出 ##{i + 1} #[input(type= 'button', id= `copyOutputExample${i+1}`, class= "problem-info-btn", value= '复制', onclick= `copyToClipboard("${problem.info.sample[i].output}","copyOutputExample${i+1}");`)]
+            p.problem-info-example #{problem.info.sample[i].output}
     div.problem-upload.card
         p.problem-info-title 提交代码
         form#judge-text
@@ -167,5 +176,9 @@ block script
                 ele.innerHTML = converter.makeHtml(ele.innerHTML);
             }
         }
-
+        function copyToClipboard(text,buttonId) {
+            navigator.clipboard.writeText(text).then(function() {
+                document.getElementById(buttonId).value = "复制成功";
+            });
+        }
         window.addEventListener('load', () => renderMarkdown());

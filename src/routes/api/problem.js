@@ -34,6 +34,7 @@ async function getProblemList(req, res) {
             difficulty: problem.difficulty,
             ac_count: problem.ac_count,
             submit_count: problem.submit_count,
+            class: problem.class,
             user: {
                 uid: problem.publisher.uid,
                 username: problem.publisher.username,
