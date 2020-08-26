@@ -9,6 +9,7 @@ const config = require('../config');
 const { errorCode, errorMessage } = require('../error');
 
 const Problem = require('../models-build/problem').default;
+const User = require('../models-build/user').default;
 
 const router = express.Router();
 
@@ -19,17 +20,22 @@ router.get('/', async (req, res) => {
         skip: (page - 1) * each,
         take: each
     });
-
-    res.render('problems.pug', {
-        problem: problems.map(problem => ({
-            pid: problem.pid,
-            type: problem.type,
-            title: problem.title,
-            difficulty: problem.difficulty,
-            ac_count: problem.ac_count,
-            submit_count: problem.submit_count
-        }))
-    });
+    if (req.session.user_id){
+        const nowUser = await User.fromUid(req.session.user_id);
+        res.render('problems.pug', { nowUser: nowUser,
+            problem: problems.map(
+                problem => ({
+                    pid: problem.pid,
+                    type: problem.type,
+                    title: problem.title,
+                    difficulty: problem.difficulty,
+                    ac_count: problem.ac_count,
+                    submit_count: problem.submit_count,
+                    class: problem.class
+                }
+            ))
+        });
+    }
 });
 
 router.get('/:pid', async (req, res) => {

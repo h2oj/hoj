@@ -58,7 +58,8 @@
 }
 
 .problemlist-table-tag {
-    text-align: right;
+    text-align: center;
+    width: 150px;
 }
 
 .problemlist-table-tag > ul {

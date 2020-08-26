@@ -28,6 +28,9 @@ export default class Problem extends Model {
     @TypeORM.Column({ nullable: false, type: 'integer'})
     uid: number;
 
+    @TypeORM.PrimaryColumn({ nullable: false, type: 'varchar', length: 64 })
+    class: string;
+
     publisher?: User;
 
     async loadRelatives() {
