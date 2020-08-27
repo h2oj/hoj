@@ -1,6 +1,5 @@
 .index-main { 
     display: flex;
-    flex-wrap: no-wrap;
     justify-content: space-around;
     align-items: center;
     justify-content: space-around;
@@ -11,7 +10,6 @@
     margin-left: auto;
     margin-right: auto;
     width: 90%;
-    padding: 20px;
 }
 
 .index-card-space {
@@ -19,17 +17,23 @@
     margin-left: auto;
     margin-right: auto;
     width: 15px;
-    padding: 20px;
+}
+
+.html-hitokoto {
+    width: 70% !important;
 }
 
 
 .index-title {
     font-size: 25px;
     font-weight: bold;
+    margin-top: 5px !important;
+    margin-bottom: 5px !important;
 }
 
 .index-info { 
     font-size: 15px;
+    margin-bottom: 5px !important;
 }
 
 .index-right {

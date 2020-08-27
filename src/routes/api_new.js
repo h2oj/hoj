@@ -6,5 +6,6 @@ module.exports = {
         problem: require('./api/problem'),
         judge: require('./judge'),
         judgestatus: require('./judgestatus'),
+        logout: require('./api/logout')
     }
 };
