@@ -1,0 +1,40 @@
+.index-main { 
+    display: flex;
+    flex-wrap: no-wrap;
+    justify-content: space-around;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.index-card {
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+    padding: 20px;
+}
+
+.index-card-space {
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 15px;
+    padding: 20px;
+}
+
+
+.index-title {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.index-info { 
+    font-size: 15px;
+}
+
+.index-right {
+    margin-left: auto;
+}
+.index-left {
+    margin-right: auto;
+}

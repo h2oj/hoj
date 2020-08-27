@@ -1,7 +1,18 @@
 extends layout/template.pug
 
+block css
+    link(rel='stylesheet', href='/css/index.css')
+
 block content
-    p Hello, world!
+    div.index-main
+        div.index-card
+            div.index-head.card.index-left 
+                p(class="index-title") Welcome to Hydrongen OJ
+        div.index-card-space
+        div.index-card 
+            div.index-head.card.index-right
+                p(class="index-title") 一言
+                p(class="index-info", id="hitokoto") 生吃了人，我没放盐
 block script
     script.
         console.log('--------------------------------------------------------------------------');
@@ -12,3 +23,12 @@ block script
         console.log(' /_/ /_/ \\__, / \\__,_//_/    \\____/ \\__, / \\___//_/ /_/   \\____/ \\____/   ');
         console.log('        /____/                     /____/                                 ');
         console.log('--------------------------------------------------------------------------');
+        let xhr = new XMLHttpRequest();
+        xhr.open('get', 'https://v1.hitokoto.cn/?c=f&encode=text', true);
+        xhr.onreadystatechange = () => {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                const res = xhr.responseText;
+                document.getElementById("hitokoto").innerHTML=res;
+            }
+        }
+        xhr.send();
