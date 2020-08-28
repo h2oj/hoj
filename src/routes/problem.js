@@ -44,7 +44,7 @@ router.get('/:pid', async (req, res) => {
         const problem_file = `${config.hoj.problemPath}/${req.params.pid}`;
         problem.info = yaml.safeLoad(fs.readFileSync(`${problem_file}/problem.yml`));
         problem.config = yaml.safeLoad(fs.readFileSync(`${problem_file}/config.yml`));
-        res.render('problem.pug', { problem: problem ,user: await User.fromUid(problem.uid)});
+        res.render('problem.pug', { problem: problem ,user: await User.fromUid(problem.uid), nowUser: await User.fromUid(req.session.user_id)});
     }
     else {
         res.redirect('/404');

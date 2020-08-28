@@ -12,7 +12,7 @@ const logger = {
     logln(str) {
         console.log(`[${colors.blue(this.__getUTCTimeString())}] [info]\n${str}`);
     },
-    err(str) {
+    error(str) {
         console.log(`[${colors.blue(this.__getUTCTimeString())}] [${colors.red('error')}] ${colors.red(str)}`);
     },
     errln(str) {
