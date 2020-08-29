@@ -1,0 +1,39 @@
+extends layout/template.pug
+
+block css
+    link(rel='stylesheet', href='/css/global.css')
+    link(rel='stylesheet', href='/css/meter.css')
+    link(rel='stylesheet', href='/css/datagrid.css')
+    link(rel='stylesheet', href='/css/tag.css')
+    link(rel='stylesheet', href='/css/contestlist.css')
+
+block content 
+    div.card
+        p(style='font-size: 20px; margin: 0px') Hydrogen OJ Contest Set
+    div.card
+        table.datagrid
+            thead
+                tr
+                    th.contestlist-table-cid 比赛编号
+                    th.contestlist-table-title 比赛标题
+                    th.contestlist-table-type 类型
+                    th.contestlist-table-difficulty 难度
+                    th.contestlist-table-owner 举办者
+            tbody#datagrid
+                each item in contest
+                    tr
+                        td.contestlist-table-cid= item.cid
+                        td.contestlist-table-title: a(href=`/contest/${item.cid}`)= item.title
+                        - const contest_type = ["个人公开赛","团队公开赛","个人邀请赛","团队邀请赛","团队内部赛"]
+                        td.contestlist-table-type: div(class=`tag tag-difficulty-${item.type+1}`): span= contest_type[item.type]
+                        - const contest_difficulty = ['尚未评定', '入门', '普及-', '普及/提高-', '普及+/提高', '提高+/省选-', '省选/NOI-', 'NOI/NOI+/CTSC'];
+                        td.contestlist-table-difficulty: div(class=`tag tag-difficulty-${item.difficulty}`): span= contest_difficulty[item.difficulty]
+                        td.contestlist-table-onwer.contestlist-table-title
+                            a(href=`/user/${item.user.uid}`)= item.user.username
+        div.page-selector
+            li.page-top: i.fa.fa-angle-double-left
+            li.page-last: i.fa.fa-angle-left
+            - for (let i = 1; i < 10; ++i)
+                li(onclick=`loadPage(${i}, 10)`).page: = i
+            li.page-next: i.fa.fa-angle-right
+            li.page-end: i.fa.fa-angle-double-right

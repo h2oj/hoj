@@ -9,9 +9,9 @@ module.exports = {
     db: {
         type: 'mysql',
         host: 'localhost',
-        port: 25020,
-        username: 'root',
-        password: 'root',
+        port: 3306,
+        username: 'scoj111',
+        password: 'scoj111',
         database: 'scoj',
     }
 };

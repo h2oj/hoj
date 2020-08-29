@@ -22,6 +22,7 @@ const router_404 = require('./routes/404.js');
 const router_api = require('./routes/api.js');
 const router_login = require('./routes/login.js');
 const router_problem = require('./routes/problem.js');
+const router_contest = require('./routes/contest.js');
 const router_submission = require('./routes/submission.js');
 const router_user = require('./routes/user.js');
 
@@ -74,6 +75,7 @@ async function run() {
     app.use('/problem', router_problem);
     app.use('/submission', router_submission);
     app.use('/user', router_user);
+    app.use('/contest', router_contest);
 
     /*
     app.use((req, res, next) => {
@@ -92,7 +94,8 @@ async function connectDatabase() {
         require('./models-build/user').default,
         require('./models-build/problem').default,
         require('./models-build/submission').default,
-        require('./models-build/test_point').default
+        require('./models-build/test_point').default,
+        require('./models-build/contest').default
     ];
     return await typeorm.createConnection({
         type: config.db.type || 'mysql',

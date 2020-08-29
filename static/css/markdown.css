@@ -1,7 +1,30 @@
-/*.katex {
+.katex {
     font-size: 1.3em !important;
 }
 
 .editormd-html-preview {
     font-size: 16px !important;
-}*/
+}
+
+p {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+code {
+    font-family: monospace;
+    font-size: .875em;
+    background-color: #fafafa;
+    border: 1px solid #e8e8e8;
+    border-radius: 2px;
+}
+
+.problem-info {
+    font-family: -apple-system, BlinkMacSystemFont, "San Francisco", "Helvetica Neue", "Noto Sans", "Noto Sans CJK SC", "Noto Sans CJK", "Source Han Sans", "PingFang SC", "Segoe UI", "Microsoft YaHei", sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: rgba(0, 0, 0, .75); 
+}

@@ -1,0 +1,90 @@
+.contestlist-main {
+    flex-direction: column;
+}
+
+.contestlist-table {
+    border-spacing: 0px;
+    width: 100%;
+}
+
+.contestlist-table th {
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.contestlist-table td {
+    font-size: 17px;
+    line-height: 35px;
+}
+
+.contestlist-table > thead > tr > th {
+    border-bottom: 2px solid #e8e8e8;
+}
+
+.contestlist-table > tbody > tr > td {
+    border-bottom: 1px solid #e8e8e8;
+}
+
+.contestlist-table > tbody > tr:last-of-type > td {
+    border-bottom: 2px solid #e8e8e8;
+}
+
+.contestlist-table-status {
+    text-align: center;
+    width: 40px;
+}
+.contestlist-table-cid {
+    text-align: left;
+    width: 70px;
+}
+
+.contestlist-table-title {
+    text-align: left;
+}
+
+.contestlist-table-title > a {
+    text-decoration: none;
+    color: #2f8bc9;
+}
+
+.contestlist-table-title > a:hover {
+    color: #1b4f72;
+}
+
+.contestlist-table-difficulty {
+    text-align: center;
+    width: 150px;
+}
+
+.contestlist-table-type {
+    text-align: center;
+    width: 150px;
+}
+
+.contestlist-table-type > ul {
+    margin: 0px;
+    padding: 0px;
+}
+
+.contestlist-table-type > div {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 2px;
+    background-color: #7c8cfc;
+    color: #ffffff;
+    font-size: 13px;
+    line-height: 13px;
+    font-weight: 400;
+    margin-left: 5px;
+}
+
+.contestlist-table-type > span:not(:first-child) {
+    margin-left: 5px;
+}
+
+.contestlist-table-onwer {
+    text-align: center;
+    width: 100px;
+}
+
+

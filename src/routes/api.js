@@ -82,7 +82,7 @@ router.post('/login', async (req, res) => {
     }
 });
 
-router.post('/logout', async (req, res) => {
+router.get('/logout', async (req, res) => {
     res.setHeader('Content-Type', 'application/json');
     if (req.session.user_id !== undefined) {
         delete req.session.user_id;

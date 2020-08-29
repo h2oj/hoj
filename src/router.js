@@ -15,5 +15,6 @@ router.get('/api/v1/submission_list', api.v1.submission.getSubmissionList);
 //router.get('/api/v1/submission_count', api.v1.submission.getSumbissionCount);
 router.get('/api/v1/submission_info', api.v1.submission.getSubmissionInfo);
 router.get('/api/v1/problem_list', api.v1.problem.getProblemList);
+router.get('/api/v1/logout', api.v1.logout.logout);
 
 module.exports = router;

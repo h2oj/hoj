@@ -32,7 +32,8 @@ block content
                     td.text-center= data.total_time + 'ms'
                     td.text-center= data.total_space + 'KB'
                     td.text-center= data.code_size + 'KB'
-                    td.text-center= data.submit_time
+                    - const time = new Date(parseInt(data.submit_time) * 1000).toLocaleString().replace(/:\d{1,2}$/,' ');
+                    td.text-center= time
     div.card
         p.card-title-1 测试点结果
         div.testpoint-pannel

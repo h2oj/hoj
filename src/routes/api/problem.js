@@ -25,7 +25,6 @@ async function getProblemList(req, res) {
     for (let problem of problems) {
         await problem.loadRelatives();
     }
-
     res.json({
         code: errorCode.SUCCESS,
         data: problems.map(problem => ({
@@ -34,7 +33,8 @@ async function getProblemList(req, res) {
             title: problem.title,
             difficulty: problem.difficulty,
             ac_count: problem.ac_count,
-            submit_cout: problem.submit_count,
+            submit_count: problem.submit_count,
+            class: problem.class,
             user: {
                 uid: problem.publisher.uid,
                 username: problem.publisher.username,
@@ -61,7 +61,7 @@ async function getProblemInfo(req, res) {
                 title: problem.title,
                 difficulty: problem.difficulty,
                 ac_count: problem.ac_count,
-                submit_cout: problem.submit_count,
+                submit_count: problem.submit_count,
                 user: {
                     uid: problem.publisher.uid,
                     username: problem.publisher.username,

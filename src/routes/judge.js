@@ -53,7 +53,7 @@ async function judge(req, res) {
         }
 
         const judgeInfo = {
-            uid: 1,
+            uid: req.session.user_id,
             pid: req.body.pid,
             language: language,
             fileExt: fileExt
@@ -68,8 +68,10 @@ async function judge(req, res) {
         });
         await submission.save();
 
+        submission.submit_time = Date.parse(new Date())/1000;
         const targetPath = path.join(config.hoj.submissionPath, submission.sid + fileExt);
         if (req.body.type === 'file') {
+            logger.log(Buffer.byteLength(req.file.path));
             fs.renameSync(req.file.path, targetPath);
         }
         else {
