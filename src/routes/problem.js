@@ -47,7 +47,7 @@ router.get('/:pid', async (req, res) => {
         res.render('problem.pug', { problem: problem ,user: await User.fromUid(problem.uid), nowUser: await User.fromUid(req.session.user_id)});
     }
     else {
-        res.redirect('/404');
+        res.redirect('/login');
     }
 });
 

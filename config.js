@@ -3,6 +3,7 @@ module.exports = {
         host: '0.0.0.0',
         port: 5000,
         problemPath: './data/problem',
+        contestPath: './data/contest',
         submissionPath: './data/submission',
         tempPath: './data/temp'
     },

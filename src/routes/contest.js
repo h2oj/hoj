@@ -3,6 +3,7 @@
 const express = require('express');
 const { constants } = require('buffer');
 const { default: problem } = require('../models-build/problem');
+const { route } = require('./submission');
 
 const User = require('../models-build/user').default;
 
@@ -22,7 +23,7 @@ router.get('/', async (req, res) => {
         for (let contest of contests) {
             await contest.loadRelatives();
         }
-        res.render('contest.pug', { nowUser: nowUser, contest: contests.map(contest => ({
+        res.render('contests.pug', { nowUser: nowUser, contest: contests.map(contest => ({
                 cid: contest.cid,
                 title: contest.title,
                 type: contest.type,
@@ -36,6 +37,18 @@ router.get('/', async (req, res) => {
         });
     }else {
         res.render('login.pug');
+    }
+});
+
+router.get("/:cid", async (req, res)=> {
+    if (req.session.user_id) {
+        const contest = await Contest.fromCid(req.params.cid);
+        const contest_file = `${config.hoj.problemPath}/${req.params.cid}`;
+        contest.info = yaml.safeLoad(fs.readFileSync(`${contest_file}/problem.yml`));
+        contest.config = yaml.safeLoad(fs.readFileSync(`${contest_file}/config.yml`));
+        res.render('contest.pug', {data: contest});
+    } else {
+        res.redirect('/login')
     }
 });
 
