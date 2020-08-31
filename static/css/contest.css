@@ -1,0 +1,67 @@
+.contest-head, .contest-info {
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+    padding: 20px;
+}
+
+.contest-upload {
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+    padding: 20px;
+}
+
+.contest-info > div {
+    width: auto;
+}
+
+.contest-title {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.contest-info-title {
+    font-weight: 600;
+}
+
+.contest-info-example {
+    margin: .5em 0;
+    padding: .3em .5em;
+    border: #ddd solid 1px;
+    background: #f8f8f8;
+    border-radius: 3px;
+    overflow: auto;
+    font-size: .875em;
+    font-family: monospace
+}
+
+.contest-info-btn {
+    display: inline-block !important;
+    flex: none !important;
+    outline: 0 !important;
+    cursor: pointer !important;
+    color: #fff !important;
+    font-weight: inherit !important;
+    line-height: 1.5 !important;
+    text-align: center!important;
+    vertical-align: middle !important;
+    background: 0 0 !important;
+    border-radius: 3px !important;
+    border: 1px solid !important;
+    font-size: .8em !important;
+    padding: 0 5px !important;
+    border-color: rgb(52, 152, 219) !important;
+    color: rgb(52, 152, 219) !important;
+    background-color: rgba(52, 152, 219, 0) !important;
+    width: auto !important;
+    max-width: 100px !important;
+}
+
+.contest-ide {
+    margin: 15px 0px;
+    height: 400px;
+    border: 1px solid #e8e8e8;
+    border-radius: 2px;
+}

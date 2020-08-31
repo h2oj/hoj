@@ -7,7 +7,6 @@ const fs = require('fs');
 const yaml = require('js-yaml');
 const config = require('../config');
 const { errorCode, errorMessage } = require('../error');
-
 const Problem = require('../models-build/problem').default;
 const User = require('../models-build/user').default;
 

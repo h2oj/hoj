@@ -1,13 +1,14 @@
 extends layout/template.pug
 
 block css
-    link(rel='stylesheet', href='/css/problem.css')
+    link(rel='stylesheet', href='/css/datagrid.css')
+    link(rel='stylesheet', href='/css/contest.css')
     link(rel='stylesheet', href='/css/util.css')
     link(rel='stylesheet', href='/css/tag.css')
     link(rel='stylesheet', href='/css/markdown.css')
     link(rel='stylesheet', data-name='vs/editor/editor.main', href='/monaco-editor/min/vs/editor/editor.main.css')
     link(rel='stylesheet', href='/katex/dist/katex.min.css')
-
+    link(rel='stylesheet', href='/css/problemlist.css')
 
 block js
     script(src='/showdown/dist/showdown.min.js')
@@ -21,17 +22,59 @@ block js
     script(src='/monaco-editor/min/vs/editor/editor.main.nls.js')
 
 block content
-    div.problem-head.card
-        p.problem-title #{problem.pid} #{problem.title}
-        - var classes = problem.class.split(",")
-        each tag in classes
-            div(class=`tag tag-difficulty-1`)
-                span= tag
-        div(class=`tag tag-difficulty-0`): span= "出题人: " + user.username
-        div(class=`tag tag-difficulty-0`): span= "内存限制: " + problem.config.substacks[0].memory_limit/1024 + "MiB"
-        div(class=`tag tag-difficulty-0`): span= "时间限制: " + problem.config.substacks[0].time_limit + "ms"
-    div.problem-info.card
-        p.problem-info-title 题目背景
-        div#problem-background #{problem.info.background}
-        p.problem-info-title 题目描述
-        div#problem-description #{problem.info.description}
+    div.contest-head.card
+        p.contest-title #{contest.cid} #{contest.title}
+        - const contest_type = ["个人公开赛","团队公开赛","个人邀请赛","团队邀请赛","团队内部赛"]
+        div(class=`tag tag-difficulty-${contest.type+1}`): span= contest_type[contest.type]
+        div(class=`tag tag-difficulty-0`): span= "举办人: " + user.username
+    div.contest-info.card
+        p.contest-info-title 比赛描述
+        div#contest-description #{contest.info.description}
+    div.contest-problemlist.card
+        table.datagrid
+            thead
+                tr
+                    th.problemlist-table-status 状态
+                    th.problemlist-table-pid 题号
+                    th.problemlist-table-title 题目名称
+                    th.problemlist-table-tag 标签
+                    th.problemlist-table-difficulty 难度
+                    th.problemlist-table-pass 通过率
+            tbody#datagrid
+                each item in problems
+                    tr
+                        td.problemlist-table-status -
+                        td.problemlist-table-pid= item.pid
+                        td.problemlist-table-title: a(href=`/problem/${item.pid}`)= item.title
+                        - var classes = item.class.split(",")
+                        td.problemlist-table-tag
+                            each tag in classes
+                                div(class=`tag tag-difficulty-1`)
+                                    span= tag
+                        - const problem_difficulty = ['尚未评定', '入门', '普及-', '普及/提高-', '普及+/提高', '提高+/省选-', '省选/NOI-', 'NOI/NOI+/CTSC'];
+                        td.problemlist-table-difficulty: div(class=`tag tag-difficulty-${item.difficulty}`): span= problem_difficulty[item.difficulty]
+                        td.problemlist-table-pass
+                            div.meter(title=`${item.ac_count}/${item.submit_count}`): div(style=`width: ${item.ac_count / item.submit_count * 100 || 0}%`)
+block script
+    script.
+        const renderElementId = [
+            'contest-description',
+        ];
+        const converter = new showdown.Converter({
+            extensions: [
+                showdownKatex({
+                    throwOnError: true,
+                    delimiters: [
+                        { left: '$$', right: '$$', display: true },
+                        { left: '$', right: '$', display: false }
+                    ]
+                })
+            ]
+        });
+        function renderMarkdown() {
+            for (let item of renderElementId) {
+                let ele = document.getElementById(item);
+                ele.innerHTML = converter.makeHtml(ele.innerHTML);
+            }
+        }
+        window.addEventListener('load', () => renderMarkdown());
