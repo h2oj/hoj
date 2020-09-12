@@ -12,7 +12,7 @@ div.topbar
     div.topbar-right
         ul.topbar-menubar
             if nowUser
-                li()= nowUser.username
+                li(onclick='window.location=\'/user\'')= nowUser.username
                 li(onclick='window.location=\'/api/v1/logout\'') 退出
             else
                 li(onclick='window.location=\'/login\'') 登录

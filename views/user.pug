@@ -3,6 +3,12 @@ extends layout/template.pug
 block css
     link(rel='stylesheet', href='/css/tag.css')
     link(rel='stylesheet', href='/css/user.css')
+    link(rel='stylesheet', href='/css/markdown.css')
+    link(rel='stylesheet', href='/katex/dist/katex.min.css')
+
+block js
+    script(src='/showdown/dist/showdown.min.js')
+    script(src='/showdown-katex/dist/showdown-katex.min.js')
 
 block content
     div.user-basicinfo.card
@@ -14,7 +20,7 @@ block content
             ul.user-basicinfo-tags.tag-ul
                 li HOJ开发团队
                 li SCM出题组
-        div.user-basicinfo-community(style='display: none')
+        div.user-basicinfo-community
             div
                 p.user-basicinfo-community-title 关注了
                 p.user-basicinfo-community-value= user.following
@@ -23,6 +29,29 @@ block content
                 p.user-basicinfo-community-value= user.follower
     div.user-container
         div.user-selfintroduce.card
-            p= user.information
+            p#information= user.information
 
 
+block script
+    script.
+        const converter = new showdown.Converter({
+            extensions: [
+                showdownKatex({
+                    throwOnError: true,
+                    delimiters: [
+                        { left: '$$', right: '$$', display: true },
+                        { left: '$', right: '$', display: false }
+                    ]
+                })
+            ]
+        });
+        const renderElementId = [
+            'information'
+        ];
+        function renderMarkdown() {
+            for (let item of renderElementId) {
+                let ele = document.getElementById(item);
+                ele.innerHTML = converter.makeHtml(ele.innerHTML);
+            }
+        }
+        window.addEventListener('load', () => renderMarkdown());
